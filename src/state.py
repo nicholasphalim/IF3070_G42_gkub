@@ -172,6 +172,25 @@ class ShipState:
 
         return neighbor
 
+    def get_deck_grid(self):
+        grid = [["." for _ in range(self.ship.width)] for _ in range(self.ship.length)]
+        for i in range(len(self.vehicles)):
+            p = self.placements[i]
+            if not p["is_loaded"]:
+                continue
+            v = self.vehicles[i]
+            w, l = self.get_vehicle_size(i)
+            for dx in range(w):
+                for dy in range(l):
+                    gx = p["x"] + dx
+                    gy = p["y"] + dy
+                    if 0 <= gx < self.ship.width and 0 <= gy < self.ship.length:
+                        if grid[gy][gx] == ".":
+                            grid[gy][gx] = v.id
+                        else:
+                            grid[gy][gx] = f"{grid[gy][gx]}+{v.id}"
+        return grid
+
     def to_dict(self):
         loaded = []
         unloaded = []
@@ -182,6 +201,7 @@ class ShipState:
             p = self.placements[i]
             info = {
                 "id": v.id,
+                "dimensions": {"w": v.width, "l": v.length},
                 "width": v.width,
                 "length": v.length,
                 "orientation": p["orientation"],
@@ -201,6 +221,9 @@ class ShipState:
             "objective_value": self.get_objective_value(),
             "is_valid": self.is_valid(),
             "total_weight": total_weight,
+            "max_capacity": self.ship.max_capacity,
+            "deck_dimensions": {"w": self.ship.width, "l": self.ship.length},
+            "deck_grid": self.get_deck_grid(),
             "loaded_vehicles": loaded,
             "unloaded_vehicles": unloaded
         }

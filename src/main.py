@@ -108,7 +108,7 @@ def run_hill_climbing_placeholder(ship, vehicles):
 def run_genetic_algorithm_placeholder(ship, vehicles):
     """Placeholder untuk modul Genetic Algorithm yang dikembangkan anggota tim."""
     try:
-        from algo.genetic_algorithm import run_genetic_algorithm_experiment
+        from experiment_ga import run_genetic_algorithm_experiment
         run_genetic_algorithm_experiment(ship, vehicles)
     except (ImportError, AttributeError):
         print("\n[INFO] Modul Genetic Algorithm (algo/genetic_algorithm.py) sedang dikembangkan oleh anggota tim.")
