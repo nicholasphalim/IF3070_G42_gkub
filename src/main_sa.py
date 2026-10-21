@@ -1,4 +1,3 @@
-"""Shortcut script khusus untuk menjalankan eksperimen Simulated Annealing."""
 from main import get_default_problem, run_simulated_annealing_experiment
 
 

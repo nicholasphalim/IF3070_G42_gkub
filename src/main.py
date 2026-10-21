@@ -144,7 +144,7 @@ def main():
     elif choice in ["4", "exit", "q"]:
         print("Program selesai. Sampai jumpa!")
     else:
-        print(f"[ERROR] Pilihan '{choice}' tidak valid. Silakan jalankan program kembali.")
+        print(f"Pilihan '{choice}' tidak valid. Silakan jalankan program kembali.")
 
 
 if __name__ == "__main__":
