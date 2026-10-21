@@ -41,7 +41,6 @@ def save_state_visualization(initial_state, final_state, run_number, filename):
         ax.set_xlim(0, ship.width)
         ax.set_ylim(0, ship.length)
         ax.set_aspect("equal")
-        ax.invert_yaxis()
 
         ax.set_xticks(range(ship.width + 1))
         ax.set_yticks(range(ship.length + 1))
