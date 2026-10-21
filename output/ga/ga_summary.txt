@@ -1,0 +1,31 @@
+Ringkasan Eksperimen Genetic Algorithm
+Mutation rate: 0.1
+
+Exp Populasi  Iterasi  Run  Awal      Akhir   Valid  Durasi (s)
+---------------------------------------------------------------
+1   50        50       1    345       450     True   0.111     
+1   50        50       2    260       350     True   0.092     
+1   50        50       3    330       410     True   0.108     
+1   50        150      1    345       390     True   0.320     
+1   50        150      2    260       375     True   0.336     
+1   50        150      3    330       445     True   0.377     
+1   50        300      1    345       460     True   0.772     
+1   50        300      2    260       420     True   0.714     
+1   50        300      3    330       450     True   0.795     
+2   20        150      1    150       455     True   0.157     
+2   20        150      2    260       360     True   0.175     
+2   20        150      3    280       390     True   0.167     
+2   50        150      1    345       390     True   0.463     
+2   50        150      2    260       375     True   0.417     
+2   50        150      3    330       445     True   0.400     
+2   100       150      1    345       450     True   1.013     
+2   100       150      2    320       470     True   0.903     
+2   100       150      3    330       480     True   0.863     
+
+Rata-rata per konfigurasi:
+  Exp 1 pop=50   iter=50   -> rata-rata akhir = 403.33, rata-rata durasi = 0.104s
+  Exp 1 pop=50   iter=150  -> rata-rata akhir = 403.33, rata-rata durasi = 0.344s
+  Exp 1 pop=50   iter=300  -> rata-rata akhir = 443.33, rata-rata durasi = 0.760s
+  Exp 2 pop=20   iter=150  -> rata-rata akhir = 401.67, rata-rata durasi = 0.166s
+  Exp 2 pop=50   iter=150  -> rata-rata akhir = 403.33, rata-rata durasi = 0.427s
+  Exp 2 pop=100  iter=150  -> rata-rata akhir = 466.67, rata-rata durasi = 0.927s
