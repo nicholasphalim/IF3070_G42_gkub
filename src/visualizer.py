@@ -1,96 +1,86 @@
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
-import os
-from PIL import Image
 
-COLORS = ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'cyan', 'magenta', 'lime', 'pink']
-warna_mobil = {}
+def save_sa_plots(result, run_number, filename):
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
+    iterations = list(range(len(result["obj_history"])))
 
-def clear_output_folder():
-    """Mereset isi folder output sebelum running."""
-    output_dir = os.path.join(os.path.dirname(__file__), '..', 'output')
-    if os.path.exists(output_dir):
-        for file_name in os.listdir(output_dir):
-            file_path = os.path.join(output_dir, file_name)
-            if os.path.isfile(file_path):
-                os.remove(file_path)
+    ax1.plot(iterations, result["obj_history"], label="Current Value", color="blue", alpha=0.6)
+    ax1.plot(iterations, result["best_obj_history"], label="Best Value", color="orange", linestyle="--")
+    ax1.set_title(f"Simulated Annealing Run {run_number} - Objective Value vs Iterations")
+    ax1.set_xlabel("Iteration")
+    ax1.set_ylabel("Objective Value")
+    ax1.legend()
+    ax1.grid(True)
 
-def draw_grid_frame(ship, iteration, current_fee):
-    """Menyimpan gambar frame per iterasi."""
-    plt.figure(figsize=(6, 6))
-    ax = plt.gca()
-    
-    plt.title(f"Iterasi {iteration} | Total Shipping Fee: {current_fee} Juta", fontsize=11)
-    
-    ax.set_xlim(0, ship.width)
-    ax.set_ylim(0, ship.length)
-    ax.set_xticks(range(ship.width + 1))
-    ax.set_yticks(range(ship.length + 1))
-    ax.grid(True, linestyle='--')
-    
-    idx_warna = 0
-    for vehicle_id, data in ship.placed_vehicles.items():
-        if vehicle_id not in warna_mobil:
-            warna_mobil[vehicle_id] = COLORS[idx_warna % len(COLORS)]
-            idx_warna += 1
-            
-        v = data['vehicle']
-        r = data['r']
-        c = data['c']
-        
-        panjang = v.length if v.orientation == 'H' else v.width
-        lebar = v.width if v.orientation == 'H' else v.length
-        
-        rect = patches.Rectangle((c, r), lebar, panjang, edgecolor='black', facecolor=warna_mobil[vehicle_id])
-        ax.add_patch(rect)
-        ax.text(c + lebar/2, r + panjang/2, vehicle_id, color='white', weight='bold', ha='center', va='center')
+    if result["prob_iterations"]:
+        ax2.scatter(result["prob_iterations"], result["prob_history"], s=6, color="red", alpha=0.5, label=r"$e^{\Delta E / T}$ ($\Delta E \leq 0$)")
+    ax2.set_title(f"Simulated Annealing Run {run_number} - Plot $e^{{\\Delta E / T}}$ vs Iterations")
+    ax2.set_xlabel("Iteration")
+    ax2.set_ylabel(r"Probability $e^{\Delta E / T}$")
+    ax2.set_ylim(-0.05, 1.05)
+    ax2.legend()
+    ax2.grid(True)
 
-    output_dir = os.path.join(os.path.dirname(__file__), '..', 'output')
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir, exist_ok=True)
-        
-    nama_file = os.path.join(output_dir, f"iterasi_{iteration}.png")
-    plt.savefig(nama_file)
+    plt.tight_layout()
+    plt.savefig(filename)
     plt.close()
 
-def create_animation_gif():
-    """
-    Mengumpulkan seluruh file iterasi_X.png di folder output/
-    lalu menggabungkannya menjadi 1 file animasi bergerak 'proses_animasi.gif'.
-    """
-    output_dir = os.path.join(os.path.dirname(__file__), '..', 'output')
+def save_steepest_plots(result, run_number, filename):
+    plt.figure(figsize=(10, 5))
+    iterations = list(range(len(result["obj_history"])))
     
-    # Ambil semua file iterasi_X.png dan urutkan berdasarkan angkanya
-    files = [f for f in os.listdir(output_dir) if f.startswith('iterasi_') and f.endswith('.png')]
-    files.sort(key=lambda x: int(x.split('_')[1].split('.')[0]))
-    
-    images = []
-    for file_name in files:
-        file_path = os.path.join(output_dir, file_name)
-        images.append(Image.open(file_path))
-        
-    if images:
-        gif_path = os.path.join(output_dir, "proses_animasi.gif")
-        # Simpan menjadi GIF bergerak (durasi per frame: 800 ms = 0.8 detik)
-        images[0].save(
-            gif_path,
-            save_all=True,
-            append_images=images[1:],
-            duration=800,
-            loop=0
-        )
-        print("   -> Animasi bergerak berhasil dibuat: 'output/proses_animasi.gif'")
-
-def draw_performance_graph(fee_history):
-    """Membuat file grafik evaluasi nilai Objective Function."""
-    plt.figure(figsize=(8, 4))
-    plt.plot(range(len(fee_history)), fee_history, marker='o', color='b', linestyle='-')
-    plt.title("Grafik Evaluasi Objective Function (Steepest Ascent)")
-    plt.xlabel("Iterasi")
-    plt.ylabel("Total Shipping Fee (Juta)")
+    plt.plot(iterations, result["obj_history"], label="Objective Value", color="green", linewidth=2)
+    plt.title(f"Steepest Ascent Run {run_number} - Objective Value vs Iterations")
+    plt.xlabel("Iteration")
+    plt.ylabel("Objective Value")
+    plt.legend()
     plt.grid(True)
     
-    output_dir = os.path.join(os.path.dirname(__file__), '..', 'output')
-    nama_file = os.path.join(output_dir, "grafik_evaluasi.png")
-    plt.savefig(nama_file)
+    plt.tight_layout()
+    plt.savefig(filename)
+    plt.close()
+
+def save_state_visualization(initial_state, final_state, run_number, filename):
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
+    colors = ["skyblue", "salmon", "lightgreen", "gold", "plum", "orange", "pink", "lightgray", "cyan", "khaki"]
+
+    states = [(ax1, initial_state, "Initial State"), (ax2, final_state, "Final State")]
+
+    for ax, state, title in states:
+        ship = state.ship
+        ax.set_xlim(0, ship.width)
+        ax.set_ylim(0, ship.length)
+        ax.set_aspect("equal")
+        ax.invert_yaxis()
+
+        ax.set_xticks(range(ship.width + 1))
+        ax.set_yticks(range(ship.length + 1))
+        ax.grid(True, color="black", linewidth=0.5)
+
+        unloaded_ids = []
+        for i in range(len(state.vehicles)):
+            v = state.vehicles[i]
+            p = state.placements[i]
+
+            if not p["is_loaded"]:
+                unloaded_ids.append(v.id)
+                continue
+
+            w, l = state.get_vehicle_size(i)
+            color = colors[i % len(colors)]
+
+            rect = patches.Rectangle((p["x"], p["y"]), w, l, edgecolor="black", facecolor=color, alpha=0.8)
+            ax.add_patch(rect)
+            ax.text(p["x"] + w / 2, p["y"] + l / 2, v.id, ha="center", va="center", fontsize=9, fontweight="bold")
+
+        val = state.get_objective_value()
+        valid_text = "Valid" if state.is_valid() else "Tidak Valid"
+        ax.set_title(f"{title} (Run {run_number})\nValue: {val} ({valid_text})")
+
+        outside_str = ", ".join(unloaded_ids) if len(unloaded_ids) > 0 else "Tidak ada"
+        ax.set_xlabel(f"Kendaraan di luar kapal: {outside_str}")
+
+    plt.tight_layout()
+    plt.savefig(filename)
     plt.close()
