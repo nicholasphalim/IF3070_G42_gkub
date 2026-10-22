@@ -5,7 +5,8 @@ import random
 from entities import load_problem_from_dict
 from state import ShipState
 from algo.sim_annealing import run_simulated_annealing
-from visualizer import save_sa_plots, save_state_visualization
+from algo.genetic_algorithm import run_genetic_algorithm
+from visualizer import save_sa_plots, save_state_visualization, save_ga_plots, save_state_animation
 
 
 def get_default_problem():
@@ -117,13 +118,85 @@ def run_hill_climbing_placeholder(ship, vehicles):
         except ImportError:
             print("\n[INFO] Modul Steepest Ascent tidak ditemukan.")
 
-def run_genetic_algorithm_placeholder(ship, vehicles):
-    """Placeholder untuk modul Genetic Algorithm yang dikembangkan anggota tim."""
-    try:
-        from algo.genetic_algorithm import run_genetic_algorithm_experiment
-        run_genetic_algorithm_experiment(ship, vehicles)
-    except (ImportError, AttributeError):
-        print("\n[INFO] Modul Genetic Algorithm (algo/genetic_algorithm.py) sedang dikembangkan oleh anggota tim.")
+def run_genetic_algorithm_experiment(ship, vehicles, output_dir="../output", seeds=None):
+    """Menjalankan eksperimen Genetic Algorithm sebanyak 3 kali sesuai spesifikasi."""
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    if seeds is None:
+        seeds = [random.SystemRandom().randint(0, 10**6) for _ in range(3)]
+
+    population_size = 50
+    max_iterations = 150
+    mutation_rate = 0.1
+
+    all_results = []
+
+    print("\n" + "=" * 50)
+    print("        EKSPERIMEN GENETIC ALGORITHM (3 RUNS)     ")
+    print("=" * 50)
+
+    for i in range(3):
+        run_num = i + 1
+        seed = seeds[i]
+        random.seed(seed)
+        initial_population = [ShipState(ship, vehicles) for _ in range(population_size)]
+        random.seed()
+
+        # Rekam animasi proses iterasi hanya pada Run 1
+        record = (run_num == 1)
+        result = run_genetic_algorithm(
+            initial_population,
+            max_iterations=max_iterations,
+            mutation_rate=mutation_rate,
+            record_history=record
+        )
+        initial_state = result["initial_state"]
+        final_state = result["final_state"]
+        best_state = result["best_state"]
+
+        print(f"\n--- Run {run_num} ---")
+        print(f"Seed Initial    : {seed}")
+        print(f"Initial Value   : {result['initial_value']}")
+        print(f"Final Value     : {result['final_value']}")
+        if result["best_value"] != result["final_value"]:
+            print(f"Best Value      : {result['best_value']} (terbaik selama pencarian)")
+        print(f"Valid State?    : {final_state.is_valid()}")
+        print(f"Total Generasi  : {result['iterations']}")
+        print(f"Ukuran Populasi : {result['population_size']}")
+        print(f"Durasi          : {round(result['duration'], 4)} detik")
+
+        # Simpan grafik visualisasi
+        metrics_path = os.path.join(output_dir, f"ga_metrics_run_{run_num}.png")
+        states_path = os.path.join(output_dir, f"ga_states_run_{run_num}.png")
+
+        save_ga_plots(result, run_num, metrics_path)
+        save_state_visualization(initial_state, final_state, run_num, states_path)
+
+        if record and result.get("history"):
+            gif_path = os.path.join(output_dir, "ga_live_progress.gif")
+            save_state_animation(result["history"], gif_path)
+
+        all_results.append({
+            "run": run_num,
+            "seed": seed,
+            "population_size": population_size,
+            "iterations": max_iterations,
+            "mutation_rate": mutation_rate,
+            "duration_seconds": result["duration"],
+            "initial_state": initial_state.to_dict(),
+            "final_state": final_state.to_dict(),
+            "best_state": best_state.to_dict(),
+            "max_obj_history": result["max_obj_history"],
+            "avg_obj_history": result["avg_obj_history"]
+        })
+
+    json_path = os.path.join(output_dir, "ga_results.json")
+    with open(json_path, "w") as f:
+        json.dump(all_results, f, indent=4)
+
+    print("\nEksperimen Genetic Algorithm selesai.")
+    print("Hasil plot, file JSON, dan animasi tersimpan di folder " + output_dir)
 
 
 def main():
@@ -152,7 +225,7 @@ def main():
     elif choice in ["2", "sa", "simulated-annealing"]:
         run_simulated_annealing_experiment(ship, vehicles)
     elif choice in ["3", "ga", "genetic-algorithm"]:
-        run_genetic_algorithm_placeholder(ship, vehicles)
+        run_genetic_algorithm_experiment(ship, vehicles)
     elif choice in ["4", "exit", "q"]:
         print("Program selesai. Sampai jumpa!")
     else:
