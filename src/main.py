@@ -47,9 +47,7 @@ def run_simulated_annealing_experiment(ship, vehicles, output_dir="../output"):
 
     for i in range(3):
         run_num = i + 1
-        random.seed(seeds[i])
         initial_state = ShipState(ship, vehicles)
-        random.seed()
 
         result = run_simulated_annealing(
             initial_state=initial_state,
@@ -110,9 +108,7 @@ def run_hill_climbing_experiment(ship, vehicles, output_dir="../output"):
 
     for i in range(3):
         run_num = i + 1
-        random.seed(seeds[i])
         initial_state = ShipState(ship, vehicles)
-        random.seed()
 
         result = run_steepest_ascent(
             initial_state=initial_state,
