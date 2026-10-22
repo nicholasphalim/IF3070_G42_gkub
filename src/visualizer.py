@@ -33,13 +33,13 @@ def save_sa_plots(result, run_number, filename):
     plt.close()
 
 
-def save_ga_plots(result, run_label, filename):
+def save_ga_plots(result, run_number, filename):
     iterations = list(range(len(result["max_obj_history"])))
 
     fig, ax = plt.subplots(figsize=(10, 5))
     ax.plot(iterations, result["max_obj_history"], label="Max Objective", color="green")
     ax.plot(iterations, result["avg_obj_history"], label="Rata-rata Objective", color="blue", alpha=0.7)
-    ax.set_title(f"Genetic Algorithm {run_label}\nPopulasi = {result['population_size']}, Iterasi = {result['iterations']}, Durasi = {result['duration']:.3f} s")
+    ax.set_title(f"Genetic Algorithm Run {run_number} - Objective Value vs Iterations\nPopulasi = {result['population_size']}, Iterasi = {result['iterations']}, Durasi = {round(result['duration'], 4)} s")
     ax.set_xlabel("Iterasi (Generasi)")
     ax.set_ylabel("Objective Value")
     ax.legend()
@@ -48,6 +48,61 @@ def save_ga_plots(result, run_label, filename):
     plt.tight_layout()
     plt.savefig(filename)
     plt.close()
+
+
+def save_state_animation(history, filename, duration_per_frame=120):
+    import io
+    from PIL import Image
+
+    colors = ["skyblue", "salmon", "lightgreen", "gold", "plum", "orange", "pink", "lightgray", "cyan", "khaki"]
+    frames = []
+
+    for item in history:
+        iteration = item["iteration"]
+        state = item["state"]
+        ship = state.ship
+
+        fig, ax = plt.subplots(figsize=(8, 7))
+        ax.set_xlim(0, ship.width)
+        ax.set_ylim(0, ship.length)
+        ax.set_aspect("equal")
+
+        ax.set_xticks(range(ship.width + 1))
+        ax.set_yticks(range(ship.length + 1))
+        ax.grid(True, color="black", linewidth=0.5)
+
+        unloaded_ids = []
+        for i in range(len(state.vehicles)):
+            v = state.vehicles[i]
+            p = state.placements[i]
+            if not p["is_loaded"]:
+                unloaded_ids.append(v.id)
+                continue
+
+            w, l = state.get_vehicle_size(i)
+            color = colors[i % len(colors)]
+            rect = patches.Rectangle((p["x"], p["y"]), w, l, edgecolor="black", facecolor=color, alpha=0.85)
+            ax.add_patch(rect)
+            ax.text(p["x"] + w / 2, p["y"] + l / 2, v.id, ha="center", va="center", fontsize=9, fontweight="bold")
+
+        val = state.get_objective_value()
+        valid_text = "Valid" if state.is_valid() else "Tidak Valid"
+        ax.set_title(f"Genetic Algorithm Progress (Generasi {iteration})\nValue: {val} ({valid_text})", fontsize=11, fontweight="bold")
+
+        outside_str = ", ".join(unloaded_ids) if len(unloaded_ids) > 0 else "Tidak ada"
+        ax.set_xlabel(f"Kendaraan di luar kapal: {outside_str}")
+
+        plt.tight_layout()
+
+        buf = io.BytesIO()
+        plt.savefig(buf, format="png", dpi=90)
+        plt.close(fig)
+        buf.seek(0)
+        frames.append(Image.open(buf).copy())
+        buf.close()
+
+    if frames:
+        frames[0].save(filename, save_all=True, append_images=frames[1:], duration=duration_per_frame, loop=0)
 
 
 def save_state_visualization(initial_state, final_state, run_number, filename):

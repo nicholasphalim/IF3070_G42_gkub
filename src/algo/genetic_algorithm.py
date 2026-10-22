@@ -6,13 +6,15 @@ from state import ShipState
 
 
 def get_fitness_values(population):
-    # objective bisa negatif karena penalti, jadi dibatasi minimal 1
-    # supaya proporsi roulette wheel tidak negatif / bagi nol
-    return [max(ind.get_objective_value(), 0) + 1 for ind in population]
+    obj_values = [ind.get_objective_value() for ind in population]
+    min_val = min(obj_values)
+    if min_val < 0:
+        return [val - min_val + 1 for val in obj_values]
+    else:
+        return [val + 1 for val in obj_values]
 
 
 def random_selection(population, fitness_values):
-    # roulette wheel: P_i = F_i / sum(F)
     total = sum(fitness_values)
     pick = random.uniform(0, total)
     current = 0
@@ -24,7 +26,6 @@ def random_selection(population, fitness_values):
 
 
 def reproduce(x, y):
-    # single-point crossover, c dipilih dari 1 sampai N-1
     n = len(x.placements)
     if n < 2:
         return x.copy_state()
@@ -35,24 +36,29 @@ def reproduce(x, y):
         child_placements.append(dict(p))
     for p in y.placements[c:]:
         child_placements.append(dict(p))
+
     return ShipState(x.ship, x.vehicles, child_placements)
 
 
 def mutate(child):
-    # salah satu dari 3 move: swap, move, rotate
     return child.get_random_neighbor()
 
 
 def get_best_individual(population):
-    # state valid diutamakan, lalu dibandingkan objective value-nya
-    best = population[0]
-    for ind in population[1:]:
-        if (ind.is_valid(), ind.get_objective_value()) > (best.is_valid(), best.get_objective_value()):
-            best = ind
-    return best
+    best_ind = population[0]
+    best_val = best_ind.get_objective_value()
+
+    for i in range(1, len(population)):
+        curr_ind = population[i]
+        curr_val = curr_ind.get_objective_value()
+        if curr_val > best_val:
+            best_ind = curr_ind
+            best_val = curr_val
+
+    return best_ind
 
 
-def run_genetic_algorithm(initial_population, max_iterations=150, mutation_rate=0.1):
+def run_genetic_algorithm(initial_population, max_iterations=150, mutation_rate=0.1, record_history=False):
     start_time = time.time()
 
     population = [ind.copy_state() for ind in initial_population]
@@ -60,15 +66,22 @@ def run_genetic_algorithm(initial_population, max_iterations=150, mutation_rate=
 
     initial_state = get_best_individual(population).copy_state()
     best_state = initial_state.copy_state()
+    best_val = best_state.get_objective_value()
 
     max_obj_history = []
     avg_obj_history = []
+    history = []
+
+    if record_history:
+        history.append({"iteration": 0, "state": initial_state.copy_state()})
 
     obj_values = [ind.get_objective_value() for ind in population]
     max_obj_history.append(max(obj_values))
     avg_obj_history.append(sum(obj_values) / len(obj_values))
 
-    for iteration in range(max_iterations):
+    sample_step = max(1, max_iterations // 40)
+
+    for iteration in range(1, max_iterations + 1):
         fitness_values = get_fitness_values(population)
 
         new_population = []
@@ -76,6 +89,7 @@ def run_genetic_algorithm(initial_population, max_iterations=150, mutation_rate=
             x = random_selection(population, fitness_values)
             y = random_selection(population, fitness_values)
             child = reproduce(x, y)
+
             if random.random() < mutation_rate:
                 child = mutate(child)
             new_population.append(child)
@@ -83,12 +97,19 @@ def run_genetic_algorithm(initial_population, max_iterations=150, mutation_rate=
         population = new_population
 
         obj_values = [ind.get_objective_value() for ind in population]
-        max_obj_history.append(max(obj_values))
+        curr_max = max(obj_values)
+        max_obj_history.append(curr_max)
         avg_obj_history.append(sum(obj_values) / len(obj_values))
 
-        generation_best = get_best_individual(population)
-        if get_best_individual([best_state, generation_best]) is generation_best:
-            best_state = generation_best.copy_state()
+        found_better = False
+        if curr_max > best_val:
+            current_best = get_best_individual(population)
+            best_state = current_best.copy_state()
+            best_val = best_state.get_objective_value()
+            found_better = True
+
+        if record_history and (found_better or iteration % sample_step == 0 or iteration == max_iterations):
+            history.append({"iteration": iteration, "state": best_state.copy_state()})
 
     final_state = get_best_individual(population).copy_state()
     duration = time.time() - start_time
@@ -105,5 +126,6 @@ def run_genetic_algorithm(initial_population, max_iterations=150, mutation_rate=
         "mutation_rate": mutation_rate,
         "duration": duration,
         "max_obj_history": max_obj_history,
-        "avg_obj_history": avg_obj_history
+        "avg_obj_history": avg_obj_history,
+        "history": history
     }
