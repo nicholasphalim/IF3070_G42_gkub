@@ -1,1 +1,59 @@
-[]
+[
+    {
+        "run_num": 1,
+        "seed": 42,
+        "initial_value": -6050,
+        "best_value": 440,
+        "iterations": 6,
+        "duration_seconds": 0.0297,
+        "is_valid": true,
+        "obj_history": [
+            -6050,
+            -3550,
+            -1135,
+            -1085,
+            415,
+            440
+        ]
+    },
+    {
+        "run_num": 2,
+        "seed": 100,
+        "initial_value": -7850,
+        "best_value": 475,
+        "iterations": 8,
+        "duration_seconds": 0.0256,
+        "is_valid": true,
+        "obj_history": [
+            -7850,
+            -570,
+            390,
+            440,
+            455,
+            465,
+            470,
+            475
+        ]
+    },
+    {
+        "run_num": 3,
+        "seed": 2026,
+        "initial_value": -14015,
+        "best_value": 455,
+        "iterations": 10,
+        "duration_seconds": 0.0414,
+        "is_valid": true,
+        "obj_history": [
+            -14015,
+            -9560,
+            -6060,
+            -3585,
+            -1155,
+            250,
+            295,
+            415,
+            430,
+            455
+        ]
+    }
+]

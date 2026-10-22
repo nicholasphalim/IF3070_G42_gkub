@@ -48,7 +48,19 @@ def main(seeds=None):
         
         metrics_path = os.path.join(output_dir, f"steepest_metrics_run_{run_num}.png")
         save_steepest_plots(result, run_num, metrics_path)
-
+        
+        run_summary = {
+            "run_num": run_num,
+            "seed": current_seed,
+            "initial_value": result["initial_value"],
+            "best_value": result["best_value"],
+            "iterations": result["iterations"],
+            "duration_seconds": round(result["duration"], 4),
+            "is_valid": final_state.is_valid(),
+            "obj_history": result["obj_history"]
+        }
+        all_results.append(run_summary)
+        
         time.sleep(0.01)
         
     
