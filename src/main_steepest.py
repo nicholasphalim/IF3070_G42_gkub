@@ -6,7 +6,7 @@ from main import get_default_problem
 from state import ShipState
 from algo.steepest import run_steepest_ascent
 from visualizer import save_state_visualization, save_steepest_plots
-def main():
+def main(seeds=None):
     output_dir = "../output"
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
@@ -18,7 +18,10 @@ def main():
     print("=" * 50)
 
     for run_num in range(1, 4):
-        current_seed = int(time.time_ns() % 1000000)
+        if seeds is not None and len(seeds) >= run_num:
+            current_seed = seeds[run_num - 1]
+        else:
+            current_seed = int(time.time_ns() % 1000000)
         random.seed(current_seed)
 
         ship, vehicles = get_default_problem()
