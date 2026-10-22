@@ -32,12 +32,14 @@ def get_default_problem():
     return load_problem_from_dict(problem_data)
 
 
-def run_simulated_annealing_experiment(ship, vehicles, output_dir="../output"):
-    """Menjalankan eksperimen Simulated Annealing sebanyak 3 kali sesuai spesifikasi."""
+def run_simulated_annealing_experiment(ship, vehicles, output_dir="../output", seeds=None):
+    """Menjalankan eksperimen Simulated Annealing sebanyak 3 kali sesuai spesifikasi.
+    """
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
-    seeds = [42, 100, 2026]
+    if seeds is None:
+        seeds = [random.SystemRandom().randint(0, 10**6) for _ in range(3)]
     all_results = []
 
     print("\n" + "=" * 50)
@@ -58,14 +60,18 @@ def run_simulated_annealing_experiment(ship, vehicles, output_dir="../output"):
             cooling_rate=0.995,
             min_temp=0.01,
             max_iterations=2000,
-            stuck_limit=30
+            stuck_limit=50
         )
 
-        final_state = result["best_state"]
+        final_state = result["final_state"]
+        best_state = result["best_state"]
 
         print(f"\n--- Run {run_num} ---")
+        print(f"Seed Initial    : {seeds[i]}")
         print(f"Initial Value   : {result['initial_value']}")
-        print(f"Final Value     : {result['best_value']}")
+        print(f"Final Value     : {result['final_value']}")
+        if result['best_value'] != result['final_value']:
+            print(f"Best Value      : {result['best_value']} (elitism)")
         print(f"Valid State?    : {final_state.is_valid()}")
         print(f"Total Iterasi   : {result['iterations']}")
         print(f"Frekuensi Stuck : {result['stuck_frequency']} kali")
@@ -80,11 +86,14 @@ def run_simulated_annealing_experiment(ship, vehicles, output_dir="../output"):
 
         all_results.append({
             "run": run_num,
+            "seed": seeds[i],
             "duration_seconds": result["duration"],
             "iterations": result["iterations"],
             "stuck_frequency": result["stuck_frequency"],
+            "stuck_iterations": result["stuck_iterations"],
             "initial_state": initial_state.to_dict(),
-            "final_state": final_state.to_dict()
+            "final_state": final_state.to_dict(),
+            "best_state": best_state.to_dict()
         })
 
     # Simpan ringkasan hasil ke JSON
