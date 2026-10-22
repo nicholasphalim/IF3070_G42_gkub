@@ -1,0 +1,1108 @@
+[
+    {
+        "run": 1,
+        "seed": 42,
+        "duration_seconds": 0.09645295143127441,
+        "iterations": 2000,
+        "stuck_frequency": 4,
+        "stuck_iterations": [
+            891,
+            991,
+            1097,
+            1387
+        ],
+        "initial_state": {
+            "objective_value": -6050,
+            "is_valid": false,
+            "total_weight": 47,
+            "loaded_vehicles": [
+                {
+                    "id": "V1",
+                    "width": 3,
+                    "length": 4,
+                    "orientation": "Horizontal",
+                    "x": 4,
+                    "y": 3,
+                    "shipping_fee": 60,
+                    "weight": 6,
+                    "eta": 2
+                },
+                {
+                    "id": "V2",
+                    "width": 4,
+                    "length": 5,
+                    "orientation": "Horizontal",
+                    "x": 5,
+                    "y": 1,
+                    "shipping_fee": 95,
+                    "weight": 10,
+                    "eta": 1
+                },
+                {
+                    "id": "V3",
+                    "width": 2,
+                    "length": 3,
+                    "orientation": "Vertical",
+                    "x": 0,
+                    "y": 0,
+                    "shipping_fee": 35,
+                    "weight": 4,
+                    "eta": 4
+                },
+                {
+                    "id": "V4",
+                    "width": 3,
+                    "length": 6,
+                    "orientation": "Horizontal",
+                    "x": 3,
+                    "y": 8,
+                    "shipping_fee": 85,
+                    "weight": 9,
+                    "eta": 3
+                },
+                {
+                    "id": "V5",
+                    "width": 5,
+                    "length": 5,
+                    "orientation": "Horizontal",
+                    "x": 5,
+                    "y": 10,
+                    "shipping_fee": 120,
+                    "weight": 12,
+                    "eta": 1
+                },
+                {
+                    "id": "V9",
+                    "width": 2,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": 0,
+                    "y": 1,
+                    "shipping_fee": 55,
+                    "weight": 6,
+                    "eta": 2
+                }
+            ],
+            "unloaded_vehicles": [
+                {
+                    "id": "V6",
+                    "width": 2,
+                    "length": 4,
+                    "orientation": "Horizontal",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 45,
+                    "weight": 5,
+                    "eta": 5
+                },
+                {
+                    "id": "V7",
+                    "width": 3,
+                    "length": 3,
+                    "orientation": "Horizontal",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 50,
+                    "weight": 5,
+                    "eta": 2
+                },
+                {
+                    "id": "V8",
+                    "width": 4,
+                    "length": 4,
+                    "orientation": "Vertical",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 75,
+                    "weight": 8,
+                    "eta": 3
+                },
+                {
+                    "id": "V10",
+                    "width": 3,
+                    "length": 5,
+                    "orientation": "Horizontal",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 70,
+                    "weight": 7,
+                    "eta": 4
+                }
+            ]
+        },
+        "final_state": {
+            "objective_value": 475,
+            "is_valid": true,
+            "total_weight": 49,
+            "loaded_vehicles": [
+                {
+                    "id": "V1",
+                    "width": 3,
+                    "length": 4,
+                    "orientation": "Horizontal",
+                    "x": 3,
+                    "y": 7,
+                    "shipping_fee": 60,
+                    "weight": 6,
+                    "eta": 2
+                },
+                {
+                    "id": "V2",
+                    "width": 4,
+                    "length": 5,
+                    "orientation": "Horizontal",
+                    "x": 6,
+                    "y": 0,
+                    "shipping_fee": 95,
+                    "weight": 10,
+                    "eta": 1
+                },
+                {
+                    "id": "V5",
+                    "width": 5,
+                    "length": 5,
+                    "orientation": "Horizontal",
+                    "x": 5,
+                    "y": 11,
+                    "shipping_fee": 120,
+                    "weight": 12,
+                    "eta": 1
+                },
+                {
+                    "id": "V8",
+                    "width": 4,
+                    "length": 4,
+                    "orientation": "Vertical",
+                    "x": 6,
+                    "y": 7,
+                    "shipping_fee": 75,
+                    "weight": 8,
+                    "eta": 3
+                },
+                {
+                    "id": "V9",
+                    "width": 2,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": 0,
+                    "y": 11,
+                    "shipping_fee": 55,
+                    "weight": 6,
+                    "eta": 2
+                },
+                {
+                    "id": "V10",
+                    "width": 3,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": 0,
+                    "y": 4,
+                    "shipping_fee": 70,
+                    "weight": 7,
+                    "eta": 4
+                }
+            ],
+            "unloaded_vehicles": [
+                {
+                    "id": "V3",
+                    "width": 2,
+                    "length": 3,
+                    "orientation": "Horizontal",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 35,
+                    "weight": 4,
+                    "eta": 4
+                },
+                {
+                    "id": "V4",
+                    "width": 3,
+                    "length": 6,
+                    "orientation": "Vertical",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 85,
+                    "weight": 9,
+                    "eta": 3
+                },
+                {
+                    "id": "V6",
+                    "width": 2,
+                    "length": 4,
+                    "orientation": "Horizontal",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 45,
+                    "weight": 5,
+                    "eta": 5
+                },
+                {
+                    "id": "V7",
+                    "width": 3,
+                    "length": 3,
+                    "orientation": "Vertical",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 50,
+                    "weight": 5,
+                    "eta": 2
+                }
+            ]
+        },
+        "best_state": {
+            "objective_value": 475,
+            "is_valid": true,
+            "total_weight": 49,
+            "loaded_vehicles": [
+                {
+                    "id": "V1",
+                    "width": 3,
+                    "length": 4,
+                    "orientation": "Vertical",
+                    "x": 0,
+                    "y": 11,
+                    "shipping_fee": 60,
+                    "weight": 6,
+                    "eta": 2
+                },
+                {
+                    "id": "V2",
+                    "width": 4,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": 5,
+                    "y": 0,
+                    "shipping_fee": 95,
+                    "weight": 10,
+                    "eta": 1
+                },
+                {
+                    "id": "V5",
+                    "width": 5,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": 5,
+                    "y": 11,
+                    "shipping_fee": 120,
+                    "weight": 12,
+                    "eta": 1
+                },
+                {
+                    "id": "V8",
+                    "width": 4,
+                    "length": 4,
+                    "orientation": "Vertical",
+                    "x": 5,
+                    "y": 6,
+                    "shipping_fee": 75,
+                    "weight": 8,
+                    "eta": 3
+                },
+                {
+                    "id": "V9",
+                    "width": 2,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": 0,
+                    "y": 5,
+                    "shipping_fee": 55,
+                    "weight": 6,
+                    "eta": 2
+                },
+                {
+                    "id": "V10",
+                    "width": 3,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": 0,
+                    "y": 8,
+                    "shipping_fee": 70,
+                    "weight": 7,
+                    "eta": 4
+                }
+            ],
+            "unloaded_vehicles": [
+                {
+                    "id": "V3",
+                    "width": 2,
+                    "length": 3,
+                    "orientation": "Horizontal",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 35,
+                    "weight": 4,
+                    "eta": 4
+                },
+                {
+                    "id": "V4",
+                    "width": 3,
+                    "length": 6,
+                    "orientation": "Vertical",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 85,
+                    "weight": 9,
+                    "eta": 3
+                },
+                {
+                    "id": "V6",
+                    "width": 2,
+                    "length": 4,
+                    "orientation": "Vertical",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 45,
+                    "weight": 5,
+                    "eta": 5
+                },
+                {
+                    "id": "V7",
+                    "width": 3,
+                    "length": 3,
+                    "orientation": "Horizontal",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 50,
+                    "weight": 5,
+                    "eta": 2
+                }
+            ]
+        }
+    },
+    {
+        "run": 2,
+        "seed": 100,
+        "duration_seconds": 0.09424495697021484,
+        "iterations": 2000,
+        "stuck_frequency": 3,
+        "stuck_iterations": [
+            1048,
+            1111,
+            1214
+        ],
+        "initial_state": {
+            "objective_value": -7850,
+            "is_valid": false,
+            "total_weight": 57,
+            "loaded_vehicles": [
+                {
+                    "id": "V1",
+                    "width": 3,
+                    "length": 4,
+                    "orientation": "Vertical",
+                    "x": 3,
+                    "y": 12,
+                    "shipping_fee": 60,
+                    "weight": 6,
+                    "eta": 2
+                },
+                {
+                    "id": "V2",
+                    "width": 4,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": 5,
+                    "y": 5,
+                    "shipping_fee": 95,
+                    "weight": 10,
+                    "eta": 1
+                },
+                {
+                    "id": "V4",
+                    "width": 3,
+                    "length": 6,
+                    "orientation": "Vertical",
+                    "x": 2,
+                    "y": 0,
+                    "shipping_fee": 85,
+                    "weight": 9,
+                    "eta": 3
+                },
+                {
+                    "id": "V5",
+                    "width": 5,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": 1,
+                    "y": 4,
+                    "shipping_fee": 120,
+                    "weight": 12,
+                    "eta": 1
+                },
+                {
+                    "id": "V6",
+                    "width": 2,
+                    "length": 4,
+                    "orientation": "Horizontal",
+                    "x": 2,
+                    "y": 3,
+                    "shipping_fee": 45,
+                    "weight": 5,
+                    "eta": 5
+                },
+                {
+                    "id": "V8",
+                    "width": 4,
+                    "length": 4,
+                    "orientation": "Vertical",
+                    "x": 3,
+                    "y": 8,
+                    "shipping_fee": 75,
+                    "weight": 8,
+                    "eta": 3
+                },
+                {
+                    "id": "V10",
+                    "width": 3,
+                    "length": 5,
+                    "orientation": "Horizontal",
+                    "x": 0,
+                    "y": 9,
+                    "shipping_fee": 70,
+                    "weight": 7,
+                    "eta": 4
+                }
+            ],
+            "unloaded_vehicles": [
+                {
+                    "id": "V3",
+                    "width": 2,
+                    "length": 3,
+                    "orientation": "Horizontal",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 35,
+                    "weight": 4,
+                    "eta": 4
+                },
+                {
+                    "id": "V7",
+                    "width": 3,
+                    "length": 3,
+                    "orientation": "Vertical",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 50,
+                    "weight": 5,
+                    "eta": 2
+                },
+                {
+                    "id": "V9",
+                    "width": 2,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 55,
+                    "weight": 6,
+                    "eta": 2
+                }
+            ]
+        },
+        "final_state": {
+            "objective_value": 475,
+            "is_valid": true,
+            "total_weight": 49,
+            "loaded_vehicles": [
+                {
+                    "id": "V1",
+                    "width": 3,
+                    "length": 4,
+                    "orientation": "Vertical",
+                    "x": 0,
+                    "y": 6,
+                    "shipping_fee": 60,
+                    "weight": 6,
+                    "eta": 2
+                },
+                {
+                    "id": "V2",
+                    "width": 4,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": 5,
+                    "y": 10,
+                    "shipping_fee": 95,
+                    "weight": 10,
+                    "eta": 1
+                },
+                {
+                    "id": "V5",
+                    "width": 5,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": 5,
+                    "y": 3,
+                    "shipping_fee": 120,
+                    "weight": 12,
+                    "eta": 1
+                },
+                {
+                    "id": "V8",
+                    "width": 4,
+                    "length": 4,
+                    "orientation": "Horizontal",
+                    "x": 0,
+                    "y": 9,
+                    "shipping_fee": 75,
+                    "weight": 8,
+                    "eta": 3
+                },
+                {
+                    "id": "V9",
+                    "width": 2,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": 4,
+                    "y": 8,
+                    "shipping_fee": 55,
+                    "weight": 6,
+                    "eta": 2
+                },
+                {
+                    "id": "V10",
+                    "width": 3,
+                    "length": 5,
+                    "orientation": "Horizontal",
+                    "x": 1,
+                    "y": 0,
+                    "shipping_fee": 70,
+                    "weight": 7,
+                    "eta": 4
+                }
+            ],
+            "unloaded_vehicles": [
+                {
+                    "id": "V3",
+                    "width": 2,
+                    "length": 3,
+                    "orientation": "Horizontal",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 35,
+                    "weight": 4,
+                    "eta": 4
+                },
+                {
+                    "id": "V4",
+                    "width": 3,
+                    "length": 6,
+                    "orientation": "Horizontal",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 85,
+                    "weight": 9,
+                    "eta": 3
+                },
+                {
+                    "id": "V6",
+                    "width": 2,
+                    "length": 4,
+                    "orientation": "Horizontal",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 45,
+                    "weight": 5,
+                    "eta": 5
+                },
+                {
+                    "id": "V7",
+                    "width": 3,
+                    "length": 3,
+                    "orientation": "Vertical",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 50,
+                    "weight": 5,
+                    "eta": 2
+                }
+            ]
+        },
+        "best_state": {
+            "objective_value": 480,
+            "is_valid": true,
+            "total_weight": 50,
+            "loaded_vehicles": [
+                {
+                    "id": "V2",
+                    "width": 4,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": 0,
+                    "y": 7,
+                    "shipping_fee": 95,
+                    "weight": 10,
+                    "eta": 1
+                },
+                {
+                    "id": "V4",
+                    "width": 3,
+                    "length": 6,
+                    "orientation": "Horizontal",
+                    "x": 5,
+                    "y": 1,
+                    "shipping_fee": 85,
+                    "weight": 9,
+                    "eta": 3
+                },
+                {
+                    "id": "V5",
+                    "width": 5,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": 5,
+                    "y": 8,
+                    "shipping_fee": 120,
+                    "weight": 12,
+                    "eta": 1
+                },
+                {
+                    "id": "V7",
+                    "width": 3,
+                    "length": 3,
+                    "orientation": "Vertical",
+                    "x": 4,
+                    "y": 13,
+                    "shipping_fee": 50,
+                    "weight": 5,
+                    "eta": 2
+                },
+                {
+                    "id": "V8",
+                    "width": 4,
+                    "length": 4,
+                    "orientation": "Horizontal",
+                    "x": 0,
+                    "y": 3,
+                    "shipping_fee": 75,
+                    "weight": 8,
+                    "eta": 3
+                },
+                {
+                    "id": "V9",
+                    "width": 2,
+                    "length": 5,
+                    "orientation": "Horizontal",
+                    "x": 2,
+                    "y": 11,
+                    "shipping_fee": 55,
+                    "weight": 6,
+                    "eta": 2
+                }
+            ],
+            "unloaded_vehicles": [
+                {
+                    "id": "V1",
+                    "width": 3,
+                    "length": 4,
+                    "orientation": "Horizontal",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 60,
+                    "weight": 6,
+                    "eta": 2
+                },
+                {
+                    "id": "V3",
+                    "width": 2,
+                    "length": 3,
+                    "orientation": "Vertical",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 35,
+                    "weight": 4,
+                    "eta": 4
+                },
+                {
+                    "id": "V6",
+                    "width": 2,
+                    "length": 4,
+                    "orientation": "Vertical",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 45,
+                    "weight": 5,
+                    "eta": 5
+                },
+                {
+                    "id": "V10",
+                    "width": 3,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 70,
+                    "weight": 7,
+                    "eta": 4
+                }
+            ]
+        }
+    },
+    {
+        "run": 3,
+        "seed": 2026,
+        "duration_seconds": 0.09616565704345703,
+        "iterations": 2000,
+        "stuck_frequency": 1,
+        "stuck_iterations": [
+            984
+        ],
+        "initial_state": {
+            "objective_value": -14015,
+            "is_valid": false,
+            "total_weight": 50,
+            "loaded_vehicles": [
+                {
+                    "id": "V1",
+                    "width": 3,
+                    "length": 4,
+                    "orientation": "Vertical",
+                    "x": 4,
+                    "y": 8,
+                    "shipping_fee": 60,
+                    "weight": 6,
+                    "eta": 2
+                },
+                {
+                    "id": "V2",
+                    "width": 4,
+                    "length": 5,
+                    "orientation": "Horizontal",
+                    "x": 4,
+                    "y": 9,
+                    "shipping_fee": 95,
+                    "weight": 10,
+                    "eta": 1
+                },
+                {
+                    "id": "V4",
+                    "width": 3,
+                    "length": 6,
+                    "orientation": "Horizontal",
+                    "x": 1,
+                    "y": 4,
+                    "shipping_fee": 85,
+                    "weight": 9,
+                    "eta": 3
+                },
+                {
+                    "id": "V5",
+                    "width": 5,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": 0,
+                    "y": 10,
+                    "shipping_fee": 120,
+                    "weight": 12,
+                    "eta": 1
+                },
+                {
+                    "id": "V9",
+                    "width": 2,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": 2,
+                    "y": 7,
+                    "shipping_fee": 55,
+                    "weight": 6,
+                    "eta": 2
+                },
+                {
+                    "id": "V10",
+                    "width": 3,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": 0,
+                    "y": 13,
+                    "shipping_fee": 70,
+                    "weight": 7,
+                    "eta": 4
+                }
+            ],
+            "unloaded_vehicles": [
+                {
+                    "id": "V3",
+                    "width": 2,
+                    "length": 3,
+                    "orientation": "Vertical",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 35,
+                    "weight": 4,
+                    "eta": 4
+                },
+                {
+                    "id": "V6",
+                    "width": 2,
+                    "length": 4,
+                    "orientation": "Vertical",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 45,
+                    "weight": 5,
+                    "eta": 5
+                },
+                {
+                    "id": "V7",
+                    "width": 3,
+                    "length": 3,
+                    "orientation": "Vertical",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 50,
+                    "weight": 5,
+                    "eta": 2
+                },
+                {
+                    "id": "V8",
+                    "width": 4,
+                    "length": 4,
+                    "orientation": "Horizontal",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 75,
+                    "weight": 8,
+                    "eta": 3
+                }
+            ]
+        },
+        "final_state": {
+            "objective_value": 485,
+            "is_valid": true,
+            "total_weight": 50,
+            "loaded_vehicles": [
+                {
+                    "id": "V1",
+                    "width": 3,
+                    "length": 4,
+                    "orientation": "Horizontal",
+                    "x": 6,
+                    "y": 0,
+                    "shipping_fee": 60,
+                    "weight": 6,
+                    "eta": 2
+                },
+                {
+                    "id": "V2",
+                    "width": 4,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": 2,
+                    "y": 12,
+                    "shipping_fee": 95,
+                    "weight": 10,
+                    "eta": 1
+                },
+                {
+                    "id": "V4",
+                    "width": 3,
+                    "length": 6,
+                    "orientation": "Vertical",
+                    "x": 0,
+                    "y": 3,
+                    "shipping_fee": 85,
+                    "weight": 9,
+                    "eta": 3
+                },
+                {
+                    "id": "V5",
+                    "width": 5,
+                    "length": 5,
+                    "orientation": "Horizontal",
+                    "x": 0,
+                    "y": 7,
+                    "shipping_fee": 120,
+                    "weight": 12,
+                    "eta": 1
+                },
+                {
+                    "id": "V7",
+                    "width": 3,
+                    "length": 3,
+                    "orientation": "Horizontal",
+                    "x": 2,
+                    "y": 0,
+                    "shipping_fee": 50,
+                    "weight": 5,
+                    "eta": 2
+                },
+                {
+                    "id": "V8",
+                    "width": 4,
+                    "length": 4,
+                    "orientation": "Horizontal",
+                    "x": 6,
+                    "y": 6,
+                    "shipping_fee": 75,
+                    "weight": 8,
+                    "eta": 3
+                }
+            ],
+            "unloaded_vehicles": [
+                {
+                    "id": "V3",
+                    "width": 2,
+                    "length": 3,
+                    "orientation": "Horizontal",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 35,
+                    "weight": 4,
+                    "eta": 4
+                },
+                {
+                    "id": "V6",
+                    "width": 2,
+                    "length": 4,
+                    "orientation": "Vertical",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 45,
+                    "weight": 5,
+                    "eta": 5
+                },
+                {
+                    "id": "V9",
+                    "width": 2,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 55,
+                    "weight": 6,
+                    "eta": 2
+                },
+                {
+                    "id": "V10",
+                    "width": 3,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 70,
+                    "weight": 7,
+                    "eta": 4
+                }
+            ]
+        },
+        "best_state": {
+            "objective_value": 485,
+            "is_valid": true,
+            "total_weight": 50,
+            "loaded_vehicles": [
+                {
+                    "id": "V1",
+                    "width": 3,
+                    "length": 4,
+                    "orientation": "Vertical",
+                    "x": 0,
+                    "y": 7,
+                    "shipping_fee": 60,
+                    "weight": 6,
+                    "eta": 2
+                },
+                {
+                    "id": "V4",
+                    "width": 3,
+                    "length": 6,
+                    "orientation": "Vertical",
+                    "x": 4,
+                    "y": 9,
+                    "shipping_fee": 85,
+                    "weight": 9,
+                    "eta": 3
+                },
+                {
+                    "id": "V5",
+                    "width": 5,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": 5,
+                    "y": 2,
+                    "shipping_fee": 120,
+                    "weight": 12,
+                    "eta": 1
+                },
+                {
+                    "id": "V6",
+                    "width": 2,
+                    "length": 4,
+                    "orientation": "Vertical",
+                    "x": 5,
+                    "y": 7,
+                    "shipping_fee": 45,
+                    "weight": 5,
+                    "eta": 5
+                },
+                {
+                    "id": "V7",
+                    "width": 3,
+                    "length": 3,
+                    "orientation": "Horizontal",
+                    "x": 0,
+                    "y": 13,
+                    "shipping_fee": 50,
+                    "weight": 5,
+                    "eta": 2
+                },
+                {
+                    "id": "V9",
+                    "width": 2,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": 0,
+                    "y": 4,
+                    "shipping_fee": 55,
+                    "weight": 6,
+                    "eta": 2
+                },
+                {
+                    "id": "V10",
+                    "width": 3,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": 4,
+                    "y": 12,
+                    "shipping_fee": 70,
+                    "weight": 7,
+                    "eta": 4
+                }
+            ],
+            "unloaded_vehicles": [
+                {
+                    "id": "V2",
+                    "width": 4,
+                    "length": 5,
+                    "orientation": "Vertical",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 95,
+                    "weight": 10,
+                    "eta": 1
+                },
+                {
+                    "id": "V3",
+                    "width": 2,
+                    "length": 3,
+                    "orientation": "Vertical",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 35,
+                    "weight": 4,
+                    "eta": 4
+                },
+                {
+                    "id": "V8",
+                    "width": 4,
+                    "length": 4,
+                    "orientation": "Horizontal",
+                    "x": null,
+                    "y": null,
+                    "shipping_fee": 75,
+                    "weight": 8,
+                    "eta": 3
+                }
+            ]
+        }
+    }
+]
