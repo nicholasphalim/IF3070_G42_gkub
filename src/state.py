@@ -154,15 +154,30 @@ class ShipState:
                 neighbor.placements[idx]["orientation"] = "Horizontal"
 
         else:
-            # Memindahkan kendaraan ke koordinat berbeda atau masuk/keluar kapal
+            # Memindahkan sebuah kendaraan ke suatu koordinat yang berbeda
             idx = random.randint(0, n - 1)
             w, l = neighbor.get_vehicle_size(idx)
 
             max_x = max(0, self.ship.width - w)
             max_y = max(0, self.ship.length - l)
 
-            neighbor.placements[idx]["x"] = random.randint(0, max_x)
-            neighbor.placements[idx]["y"] = random.randint(0, max_y)
+            old_x = neighbor.placements[idx]["x"]
+            old_y = neighbor.placements[idx]["y"]
+
+            # Pastikan koordinat baru berbeda dari koordinat sebelumnya
+            if max_x > 0 or max_y > 0:
+                new_x = random.randint(0, max_x)
+                new_y = random.randint(0, max_y)
+                attempts = 0
+                while (new_x == old_x and new_y == old_y) and attempts < 20:
+                    new_x = random.randint(0, max_x)
+                    new_y = random.randint(0, max_y)
+                    attempts += 1
+                neighbor.placements[idx]["x"] = new_x
+                neighbor.placements[idx]["y"] = new_y
+            else:
+                neighbor.placements[idx]["x"] = 0
+                neighbor.placements[idx]["y"] = 0
 
             # Peluang 25% untuk mengubah status di dalam / di luar kapal
             if random.random() < 0.25:
