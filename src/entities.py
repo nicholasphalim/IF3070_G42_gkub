@@ -7,13 +7,11 @@ class Vehicle:
         self.weight = weight
         self.eta = eta
 
-
 class Ship:
     def __init__(self, width, length, max_capacity):
         self.width = width
         self.length = length
         self.max_capacity = max_capacity
-
 
 def load_problem_from_dict(data):
     ship_data = data["ship"]

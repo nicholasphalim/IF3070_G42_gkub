@@ -1,7 +1,6 @@
 import copy
 import random
 
-
 class ShipState:
     def __init__(self, ship, vehicles, placements=None):
         self.ship = ship
@@ -152,6 +151,13 @@ class ShipState:
                 neighbor.placements[idx]["orientation"] = "Vertical"
             else:
                 neighbor.placements[idx]["orientation"] = "Horizontal"
+            
+            # Geser x dan y jika setelah dirotasi koordinatnya keluar batas kapal
+            w, l = neighbor.get_vehicle_size(idx)
+            max_x = max(0, self.ship.width - w)
+            max_y = max(0, self.ship.length - l)
+            neighbor.placements[idx]["x"] = min(neighbor.placements[idx]["x"], max_x)
+            neighbor.placements[idx]["y"] = min(neighbor.placements[idx]["y"], max_y)
 
         else:
             # Memindahkan sebuah kendaraan ke suatu koordinat yang berbeda
