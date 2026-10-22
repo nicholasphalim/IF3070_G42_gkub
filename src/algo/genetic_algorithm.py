@@ -5,46 +5,10 @@ import time
 from state import ShipState
 
 
-def count_violations(state):
-    total_fee = 0
-    total_weight = 0
-    overlap_count = 0
-    out_of_bounds_count = 0
-
-    grid = []
-    for r in range(state.ship.length):
-        grid.append([0] * state.ship.width)
-
-    for i in range(len(state.vehicles)):
-        p = state.placements[i]
-        if not p["is_loaded"]:
-            continue
-
-        v = state.vehicles[i]
-        total_fee += v.shipping_fee
-        total_weight += v.weight
-
-        w, l = state.get_vehicle_size(i)
-        for dx in range(w):
-            for dy in range(l):
-                gx = p["x"] + dx
-                gy = p["y"] + dy
-                if gx < 0 or gx >= state.ship.width or gy < 0 or gy >= state.ship.length:
-                    out_of_bounds_count += 1
-                else:
-                    if grid[gy][gx] >= 1:
-                        overlap_count += 1
-                    grid[gy][gx] += 1
-
-    excess_weight = max(0, total_weight - state.ship.max_capacity)
-    violations = overlap_count + out_of_bounds_count + excess_weight
-    return total_fee, violations
-
-
-def fitness(state):
-    # fitness selalu >= 1 supaya proporsi roulette wheel tidak negatif / bagi nol
-    total_fee, violations = count_violations(state)
-    return total_fee / (1 + violations) + 1
+def get_fitness_values(population):
+    # objective bisa negatif karena penalti, jadi dibatasi minimal 1
+    # supaya proporsi roulette wheel tidak negatif / bagi nol
+    return [max(ind.get_objective_value(), 0) + 1 for ind in population]
 
 
 def random_selection(population, fitness_values):
@@ -75,29 +39,27 @@ def reproduce(x, y):
 
 
 def mutate(child):
-    # salah satu dari 3 move: swap, move (termasuk masuk/keluar kapal), rotate
+    # salah satu dari 3 move: swap, move, rotate
     return child.get_random_neighbor()
 
 
 def get_best_individual(population):
+    # state valid diutamakan, lalu dibandingkan objective value-nya
     best = population[0]
-    best_val = best.get_objective_value()
     for ind in population[1:]:
-        val = ind.get_objective_value()
-        if val > best_val:
+        if (ind.is_valid(), ind.get_objective_value()) > (best.is_valid(), best.get_objective_value()):
             best = ind
-            best_val = val
     return best
 
 
-def run_genetic_algorithm(ship, vehicles, population_size=50, max_iterations=150, mutation_rate=0.1):
+def run_genetic_algorithm(initial_population, max_iterations=150, mutation_rate=0.1):
     start_time = time.time()
 
-    population = []
-    for i in range(population_size):
-        population.append(ShipState(ship, vehicles))
+    population = [ind.copy_state() for ind in initial_population]
+    population_size = len(population)
 
     initial_state = get_best_individual(population).copy_state()
+    best_state = initial_state.copy_state()
 
     max_obj_history = []
     avg_obj_history = []
@@ -107,7 +69,7 @@ def run_genetic_algorithm(ship, vehicles, population_size=50, max_iterations=150
     avg_obj_history.append(sum(obj_values) / len(obj_values))
 
     for iteration in range(max_iterations):
-        fitness_values = [fitness(ind) for ind in population]
+        fitness_values = get_fitness_values(population)
 
         new_population = []
         for i in range(population_size):
@@ -124,14 +86,20 @@ def run_genetic_algorithm(ship, vehicles, population_size=50, max_iterations=150
         max_obj_history.append(max(obj_values))
         avg_obj_history.append(sum(obj_values) / len(obj_values))
 
+        generation_best = get_best_individual(population)
+        if get_best_individual([best_state, generation_best]) is generation_best:
+            best_state = generation_best.copy_state()
+
     final_state = get_best_individual(population).copy_state()
     duration = time.time() - start_time
 
     return {
         "initial_state": initial_state,
         "final_state": final_state,
+        "best_state": best_state,
         "initial_value": initial_state.get_objective_value(),
         "final_value": final_state.get_objective_value(),
+        "best_value": best_state.get_objective_value(),
         "population_size": population_size,
         "iterations": max_iterations,
         "mutation_rate": mutation_rate,
