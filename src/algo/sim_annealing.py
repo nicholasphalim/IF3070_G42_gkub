@@ -3,7 +3,7 @@ import random
 import time
 
 
-def run_simulated_annealing(initial_state, initial_temp=1000.0, cooling_rate=0.995, min_temp=0.01, max_iterations=2000, stuck_limit=30):
+def run_simulated_annealing(initial_state, initial_temp=1000.0, cooling_rate=0.995, min_temp=0.01, max_iterations=2000, stuck_limit=50):
     start_time = time.time()
 
     current_state = initial_state.copy_state()
@@ -15,8 +15,12 @@ def run_simulated_annealing(initial_state, initial_temp=1000.0, cooling_rate=0.9
     temp = initial_temp
     iteration = 0
 
-    rejection_counter = 0
+    # Stuck = nilai current ga berubah2 selama stuck_limit iterasi berturut-turut,
+    # artinya agen itu stuck di local maximum / flat local maximum (plateau) / shoulder.
+    # Sideways move (delta_e == 0) ga diitung sebagai kemajuan juga.
+    no_change_counter = 0
     stuck_frequency = 0
+    stuck_iterations = []
 
     obj_history = [current_val]
     best_obj_history = [best_val]
@@ -48,17 +52,21 @@ def run_simulated_annealing(initial_state, initial_temp=1000.0, cooling_rate=0.9
         if accept:
             current_state = neighbor
             current_val = neighbor_val
-            rejection_counter = 0  #bisa pindah posisi, ga stuck
 
             if current_val > best_val:
                 best_state = current_state.copy_state()
                 best_val = current_val
+
+        # nilai current berubah (naik, atau turun yg diterima) -> agen tidak stuck
+        if accept and delta_e != 0:
+            no_change_counter = 0
         else:
-            #ditolak, ga pindah posisi
-            rejection_counter += 1
-            if rejection_counter >= stuck_limit:
+            # ditolak atau sideways -> nilai current tetap
+            no_change_counter += 1
+            # hitung 1x per episode stuck (saat pertama kali mencapai batas)
+            if no_change_counter == stuck_limit:
                 stuck_frequency += 1
-                rejection_counter = 0
+                stuck_iterations.append(iteration)
 
         obj_history.append(current_val)
         best_obj_history.append(best_val)
@@ -78,6 +86,7 @@ def run_simulated_annealing(initial_state, initial_temp=1000.0, cooling_rate=0.9
         "duration": duration,
         "iterations": iteration,
         "stuck_frequency": stuck_frequency,
+        "stuck_iterations": stuck_iterations,
         "obj_history": obj_history,
         "best_obj_history": best_obj_history,
         "prob_iterations": prob_iterations,
