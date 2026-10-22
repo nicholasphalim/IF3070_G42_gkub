@@ -154,15 +154,30 @@ class ShipState:
                 neighbor.placements[idx]["orientation"] = "Horizontal"
 
         else:
-            # Memindahkan kendaraan ke koordinat berbeda atau masuk/keluar kapal
+            # Memindahkan sebuah kendaraan ke suatu koordinat yang berbeda
             idx = random.randint(0, n - 1)
             w, l = neighbor.get_vehicle_size(idx)
 
             max_x = max(0, self.ship.width - w)
             max_y = max(0, self.ship.length - l)
 
-            neighbor.placements[idx]["x"] = random.randint(0, max_x)
-            neighbor.placements[idx]["y"] = random.randint(0, max_y)
+            old_x = neighbor.placements[idx]["x"]
+            old_y = neighbor.placements[idx]["y"]
+
+            # Pastikan koordinat baru berbeda dari koordinat sebelumnya
+            if max_x > 0 or max_y > 0:
+                new_x = random.randint(0, max_x)
+                new_y = random.randint(0, max_y)
+                attempts = 0
+                while (new_x == old_x and new_y == old_y) and attempts < 20:
+                    new_x = random.randint(0, max_x)
+                    new_y = random.randint(0, max_y)
+                    attempts += 1
+                neighbor.placements[idx]["x"] = new_x
+                neighbor.placements[idx]["y"] = new_y
+            else:
+                neighbor.placements[idx]["x"] = 0
+                neighbor.placements[idx]["y"] = 0
 
             # Peluang 25% untuk mengubah status di dalam / di luar kapal
             if random.random() < 0.25:
@@ -171,25 +186,6 @@ class ShipState:
                 neighbor.placements[idx]["is_loaded"] = True
 
         return neighbor
-
-    def get_deck_grid(self):
-        grid = [["." for _ in range(self.ship.width)] for _ in range(self.ship.length)]
-        for i in range(len(self.vehicles)):
-            p = self.placements[i]
-            if not p["is_loaded"]:
-                continue
-            v = self.vehicles[i]
-            w, l = self.get_vehicle_size(i)
-            for dx in range(w):
-                for dy in range(l):
-                    gx = p["x"] + dx
-                    gy = p["y"] + dy
-                    if 0 <= gx < self.ship.width and 0 <= gy < self.ship.length:
-                        if grid[gy][gx] == ".":
-                            grid[gy][gx] = v.id
-                        else:
-                            grid[gy][gx] = f"{grid[gy][gx]}+{v.id}"
-        return grid
 
     def to_dict(self):
         loaded = []
@@ -201,7 +197,6 @@ class ShipState:
             p = self.placements[i]
             info = {
                 "id": v.id,
-                "dimensions": {"w": v.width, "l": v.length},
                 "width": v.width,
                 "length": v.length,
                 "orientation": p["orientation"],
@@ -221,9 +216,6 @@ class ShipState:
             "objective_value": self.get_objective_value(),
             "is_valid": self.is_valid(),
             "total_weight": total_weight,
-            "max_capacity": self.ship.max_capacity,
-            "deck_dimensions": {"w": self.ship.width, "l": self.ship.length},
-            "deck_grid": self.get_deck_grid(),
             "loaded_vehicles": loaded,
             "unloaded_vehicles": unloaded
         }
