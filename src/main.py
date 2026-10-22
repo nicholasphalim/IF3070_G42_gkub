@@ -106,18 +106,16 @@ def run_simulated_annealing_experiment(ship, vehicles, output_dir="../output", s
 
 
 def run_hill_climbing_placeholder(ship, vehicles):
-    """Memanggil eksperimen Steepest Ascent Hill-Climbing."""
+    """Menjalankan eksperimen Steepest Ascent Hill-Climbing."""
     try:
-        from algo.steepest import run_steepest_ascent_experiment
-        run_steepest_ascent_experiment(ship, vehicles)
+        from main_steepest import main as run_steepest_main
+        run_steepest_main()
     except ImportError:
-        # Jika file ada di root folder main_steepest.py
         try:
-            from main_steepest import run_steepest_ascent_experiment
+            from algo.steepest import run_steepest_ascent_experiment
             run_steepest_ascent_experiment(ship, vehicles)
         except ImportError:
-            print("\n[INFO] Modul Steepest Ascent (algo/steepest.py) tidak ditemukan.")
-
+            print("\n[INFO] Modul Steepest Ascent tidak ditemukan.")
 
 def run_genetic_algorithm_placeholder(ship, vehicles):
     """Placeholder untuk modul Genetic Algorithm yang dikembangkan anggota tim."""

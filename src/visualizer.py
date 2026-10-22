@@ -74,3 +74,21 @@ def save_state_visualization(initial_state, final_state, run_number, filename):
     plt.tight_layout()
     plt.savefig(filename)
     plt.close()
+    
+def save_steepest_plots(result, run_number, filename):
+    fig, ax = plt.subplots(figsize=(10, 5))
+    
+    # Ambil obj_history sesuai dengan return dictionary dari algo/steepest.py
+    history_data = result.get("obj_history", [])
+    iterations = list(range(len(history_data)))
+
+    ax.plot(iterations, history_data, label="Objective Value", color="green", linewidth=2)
+    ax.set_title(f"Steepest Ascent Run {run_number} - Objective Value vs Iterations")
+    ax.set_xlabel("Iteration")
+    ax.set_ylabel("Objective Value")
+    ax.legend()
+    ax.grid(True)
+
+    plt.tight_layout()
+    plt.savefig(filename)
+    plt.close()
