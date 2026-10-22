@@ -33,6 +33,23 @@ def save_sa_plots(result, run_number, filename):
     plt.close()
 
 
+def save_ga_plots(result, run_label, filename):
+    iterations = list(range(len(result["max_obj_history"])))
+
+    fig, ax = plt.subplots(figsize=(10, 5))
+    ax.plot(iterations, result["max_obj_history"], label="Max Objective", color="green")
+    ax.plot(iterations, result["avg_obj_history"], label="Rata-rata Objective", color="blue", alpha=0.7)
+    ax.set_title(f"Genetic Algorithm {run_label}\nPopulasi = {result['population_size']}, Iterasi = {result['iterations']}, Durasi = {result['duration']:.3f} s")
+    ax.set_xlabel("Iterasi (Generasi)")
+    ax.set_ylabel("Objective Value")
+    ax.legend()
+    ax.grid(True)
+
+    plt.tight_layout()
+    plt.savefig(filename)
+    plt.close()
+
+
 def save_state_visualization(initial_state, final_state, run_number, filename):
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
     colors = ["skyblue", "salmon", "lightgreen", "gold", "plum", "orange", "pink", "lightgray", "cyan", "khaki"]

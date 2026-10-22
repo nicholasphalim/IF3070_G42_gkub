@@ -4,374 +4,356 @@ Koordinat (x, y) = sel kiri bawah kendaraan, origin (0, 0) di kiri bawah geladak
 
 Exp Populasi  Iterasi  Run  Seed     Awal    Akhir   Valid  Durasi (s)
 ----------------------------------------------------------------------
-1   50        50       1    611062   295     355     True   0.256     
-1   50        50       2    894809   250     420     True   0.262     
-1   50        50       3    374801   290     405     True   0.290     
-1   50        150      1    611062   295     435     True   0.825     
-1   50        150      2    894809   250     405     True   0.832     
-1   50        150      3    374801   290     385     True   0.829     
-1   50        300      1    611062   295     440     True   1.535     
-1   50        300      2    894809   250     470     True   1.974     
-1   50        300      3    374801   290     445     True   1.695     
-2   20        150      1    611062   -670    330     True   0.287     
-2   20        150      2    894809   250     405     True   0.341     
-2   20        150      3    374801   290     420     True   0.374     
-2   50        150      1    611062   295     475     True   0.744     
-2   50        150      2    894809   250     470     True   0.922     
-2   50        150      3    374801   290     410     True   0.890     
-2   100       150      1    611062   295     400     True   1.781     
-2   100       150      2    894809   365     445     True   1.882     
-2   100       150      3    374801   290     465     True   1.828     
+1   50        50       1    288279   280     380     True   0.278     
+1   50        50       2    605724   285     460     True   0.371     
+1   50        50       3    945422   215     465     True   0.604     
+1   50        150      1    288279   280     455     True   1.413     
+1   50        150      2    605724   285     390     True   1.571     
+1   50        150      3    945422   215     420     True   1.199     
+1   50        300      1    288279   280     470     True   2.481     
+1   50        300      2    605724   285     390     True   2.173     
+1   50        300      3    945422   215     415     True   2.027     
+2   20        150      1    288279   280     410     True   0.388     
+2   20        150      2    605724   285     470     True   0.381     
+2   20        150      3    945422   180     405     True   0.345     
+2   50        150      1    288279   280     435     True   1.254     
+2   50        150      2    605724   285     385     True   1.106     
+2   50        150      3    945422   215     415     True   0.957     
+2   100       150      1    288279   280     480     True   2.313     
+2   100       150      2    605724   330     465     True   2.279     
+2   100       150      3    945422   240     475     True   2.547     
 
 Rata-rata per konfigurasi:
-  Exp 1 pop=50   iter=50   -> rata-rata akhir = 393.33, rata-rata durasi = 0.269s
-  Exp 1 pop=50   iter=150  -> rata-rata akhir = 408.33, rata-rata durasi = 0.828s
-  Exp 1 pop=50   iter=300  -> rata-rata akhir = 451.67, rata-rata durasi = 1.735s
-  Exp 2 pop=20   iter=150  -> rata-rata akhir = 385.00, rata-rata durasi = 0.334s
-  Exp 2 pop=50   iter=150  -> rata-rata akhir = 451.67, rata-rata durasi = 0.852s
-  Exp 2 pop=100  iter=150  -> rata-rata akhir = 436.67, rata-rata durasi = 1.831s
+  Exp 1 pop=50   iter=50   -> rata-rata akhir = 435.00, rata-rata durasi = 0.418s
+  Exp 1 pop=50   iter=150  -> rata-rata akhir = 421.67, rata-rata durasi = 1.394s
+  Exp 1 pop=50   iter=300  -> rata-rata akhir = 425.00, rata-rata durasi = 2.227s
+  Exp 2 pop=20   iter=150  -> rata-rata akhir = 428.33, rata-rata durasi = 0.371s
+  Exp 2 pop=50   iter=150  -> rata-rata akhir = 411.67, rata-rata durasi = 1.106s
+  Exp 2 pop=100  iter=150  -> rata-rata akhir = 473.33, rata-rata durasi = 2.380s
 
 Detail state awal dan akhir:
 
 Eksperimen 1 | Populasi 50 | Iterasi 50 | Run 1
-  State awal (value = 295, valid = True, berat = 31)
+  State awal (value = 280, valid = True, berat = 29)
     Di dalam kapal:
-      V1   (3, 2) Vertical   3x4 fee=60 weight=6
-      V3   (6, 6) Horizontal 2x3 fee=35 weight=4
-      V4   (1, 11) Vertical   3x6 fee=85 weight=9
-      V6   (7, 12) Horizontal 2x4 fee=45 weight=5
-      V10  (3, 5) Horizontal 3x5 fee=70 weight=7
-    Di luar kapal: V2, V5, V7, V8, V9
-  State akhir (value = 355, valid = True, berat = 37)
+      V3   (2, 10) Horizontal 2x3 fee=35 weight=4
+      V5   (5, 3) Horizontal 5x5 fee=120 weight=12
+      V7   (4, 0) Vertical   3x3 fee=50 weight=5
+      V8   (5, 8) Horizontal 4x4 fee=75 weight=8
+    Di luar kapal: V1, V2, V4, V6, V9, V10
+  State akhir (value = 380, valid = True, berat = 40)
     Di dalam kapal:
-      V1   (3, 2) Vertical   3x4 fee=60 weight=6
-      V2   (1, 11) Vertical   4x5 fee=95 weight=10
-      V3   (6, 6) Horizontal 2x3 fee=35 weight=4
-      V6   (7, 12) Horizontal 2x4 fee=45 weight=5
-      V7   (0, 0) Horizontal 3x3 fee=50 weight=5
-      V10  (3, 5) Horizontal 3x5 fee=70 weight=7
-    Di luar kapal: V4, V5, V8, V9
+      V1   (2, 1) Horizontal 3x4 fee=60 weight=6
+      V2   (6, 10) Horizontal 4x5 fee=95 weight=10
+      V3   (7, 1) Horizontal 2x3 fee=35 weight=4
+      V6   (4, 11) Horizontal 2x4 fee=45 weight=5
+      V8   (5, 6) Vertical   4x4 fee=75 weight=8
+      V10  (1, 8) Horizontal 3x5 fee=70 weight=7
+    Di luar kapal: V4, V5, V7, V9
 
 Eksperimen 1 | Populasi 50 | Iterasi 50 | Run 2
-  State awal (value = 250, valid = True, berat = 26)
+  State awal (value = 285, valid = True, berat = 29)
     Di dalam kapal:
-      V1   (6, 3) Horizontal 3x4 fee=60 weight=6
-      V3   (8, 7) Horizontal 2x3 fee=35 weight=4
-      V4   (4, 11) Vertical   3x6 fee=85 weight=9
-      V10  (2, 4) Horizontal 3x5 fee=70 weight=7
-    Di luar kapal: V2, V5, V6, V7, V8, V9
-  State akhir (value = 420, valid = True, berat = 44)
+      V1   (0, 4) Horizontal 3x4 fee=60 weight=6
+      V3   (2, 0) Horizontal 2x3 fee=35 weight=4
+      V5   (2, 8) Horizontal 5x5 fee=120 weight=12
+      V10  (6, 1) Horizontal 3x5 fee=70 weight=7
+    Di luar kapal: V2, V4, V6, V7, V8, V9
+  State akhir (value = 460, valid = True, berat = 48)
     Di dalam kapal:
-      V1   (4, 4) Vertical   3x4 fee=60 weight=6
-      V3   (1, 0) Horizontal 2x3 fee=35 weight=4
-      V4   (3, 1) Vertical   3x6 fee=85 weight=9
-      V5   (0, 7) Vertical   5x5 fee=120 weight=12
-      V6   (0, 12) Horizontal 2x4 fee=45 weight=5
-      V8   (6, 11) Vertical   4x4 fee=75 weight=8
-    Di luar kapal: V2, V7, V9, V10
+      V1   (0, 4) Horizontal 3x4 fee=60 weight=6
+      V2   (0, 10) Vertical   4x5 fee=95 weight=10
+      V4   (7, 4) Horizontal 3x6 fee=85 weight=9
+      V6   (5, 12) Horizontal 2x4 fee=45 weight=5
+      V7   (0, 1) Vertical   3x3 fee=50 weight=5
+      V9   (8, 10) Horizontal 2x5 fee=55 weight=6
+      V10  (4, 4) Horizontal 3x5 fee=70 weight=7
+    Di luar kapal: V3, V5, V8
 
 Eksperimen 1 | Populasi 50 | Iterasi 50 | Run 3
-  State awal (value = 290, valid = True, berat = 31)
+  State awal (value = 215, valid = True, berat = 23)
     Di dalam kapal:
-      V3   (1, 2) Horizontal 2x3 fee=35 weight=4
-      V4   (0, 9) Horizontal 3x6 fee=85 weight=9
-      V6   (8, 9) Horizontal 2x4 fee=45 weight=5
-      V7   (7, 1) Horizontal 3x3 fee=50 weight=5
-      V8   (3, 2) Vertical   4x4 fee=75 weight=8
-    Di luar kapal: V1, V2, V5, V9, V10
-  State akhir (value = 405, valid = True, berat = 43)
-    Di dalam kapal:
-      V1   (3, 7) Vertical   3x4 fee=60 weight=6
-      V3   (1, 2) Horizontal 2x3 fee=35 weight=4
-      V4   (0, 9) Horizontal 3x6 fee=85 weight=9
-      V6   (8, 9) Horizontal 2x4 fee=45 weight=5
-      V7   (7, 1) Horizontal 3x3 fee=50 weight=5
-      V8   (3, 2) Horizontal 4x4 fee=75 weight=8
-      V9   (3, 10) Horizontal 2x5 fee=55 weight=6
-    Di luar kapal: V2, V5, V10
-
-Eksperimen 1 | Populasi 50 | Iterasi 150 | Run 1
-  State awal (value = 295, valid = True, berat = 31)
-    Di dalam kapal:
-      V1   (3, 2) Vertical   3x4 fee=60 weight=6
-      V3   (6, 6) Horizontal 2x3 fee=35 weight=4
-      V4   (1, 11) Vertical   3x6 fee=85 weight=9
-      V6   (7, 12) Horizontal 2x4 fee=45 weight=5
-      V10  (3, 5) Horizontal 3x5 fee=70 weight=7
-    Di luar kapal: V2, V5, V7, V8, V9
-  State akhir (value = 435, valid = True, berat = 45)
-    Di dalam kapal:
-      V1   (4, 0) Vertical   3x4 fee=60 weight=6
-      V3   (6, 6) Vertical   2x3 fee=35 weight=4
-      V5   (1, 11) Horizontal 5x5 fee=120 weight=12
+      V2   (1, 2) Vertical   4x5 fee=95 weight=10
       V6   (7, 8) Horizontal 2x4 fee=45 weight=5
-      V7   (7, 13) Horizontal 3x3 fee=50 weight=5
-      V9   (5, 3) Vertical   2x5 fee=55 weight=6
-      V10  (3, 5) Horizontal 3x5 fee=70 weight=7
-    Di luar kapal: V2, V4, V8
-
-Eksperimen 1 | Populasi 50 | Iterasi 150 | Run 2
-  State awal (value = 250, valid = True, berat = 26)
-    Di dalam kapal:
-      V1   (6, 3) Horizontal 3x4 fee=60 weight=6
-      V3   (8, 7) Horizontal 2x3 fee=35 weight=4
-      V4   (4, 11) Vertical   3x6 fee=85 weight=9
-      V10  (2, 4) Horizontal 3x5 fee=70 weight=7
-    Di luar kapal: V2, V5, V6, V7, V8, V9
-  State akhir (value = 405, valid = True, berat = 43)
-    Di dalam kapal:
-      V1   (6, 3) Vertical   3x4 fee=60 weight=6
-      V3   (1, 0) Horizontal 2x3 fee=35 weight=4
-      V4   (2, 3) Horizontal 3x6 fee=85 weight=9
-      V6   (0, 12) Horizontal 2x4 fee=45 weight=5
-      V7   (7, 8) Horizontal 3x3 fee=50 weight=5
-      V8   (6, 11) Horizontal 4x4 fee=75 weight=8
-      V9   (0, 4) Horizontal 2x5 fee=55 weight=6
-    Di luar kapal: V2, V5, V10
-
-Eksperimen 1 | Populasi 50 | Iterasi 150 | Run 3
-  State awal (value = 290, valid = True, berat = 31)
-    Di dalam kapal:
-      V3   (1, 2) Horizontal 2x3 fee=35 weight=4
-      V4   (0, 9) Horizontal 3x6 fee=85 weight=9
-      V6   (8, 9) Horizontal 2x4 fee=45 weight=5
-      V7   (7, 1) Horizontal 3x3 fee=50 weight=5
-      V8   (3, 2) Vertical   4x4 fee=75 weight=8
-    Di luar kapal: V1, V2, V5, V9, V10
-  State akhir (value = 385, valid = True, berat = 41)
-    Di dalam kapal:
-      V2   (3, 7) Vertical   4x5 fee=95 weight=10
-      V3   (1, 2) Horizontal 2x3 fee=35 weight=4
-      V4   (0, 9) Horizontal 3x6 fee=85 weight=9
-      V6   (8, 9) Horizontal 2x4 fee=45 weight=5
-      V7   (7, 1) Vertical   3x3 fee=50 weight=5
-      V8   (3, 2) Horizontal 4x4 fee=75 weight=8
-    Di luar kapal: V1, V5, V9, V10
-
-Eksperimen 1 | Populasi 50 | Iterasi 300 | Run 1
-  State awal (value = 295, valid = True, berat = 31)
-    Di dalam kapal:
-      V1   (3, 2) Vertical   3x4 fee=60 weight=6
-      V3   (6, 6) Horizontal 2x3 fee=35 weight=4
-      V4   (1, 11) Vertical   3x6 fee=85 weight=9
-      V6   (7, 12) Horizontal 2x4 fee=45 weight=5
-      V10  (3, 5) Horizontal 3x5 fee=70 weight=7
-    Di luar kapal: V2, V5, V7, V8, V9
-  State akhir (value = 440, valid = True, berat = 45)
-    Di dalam kapal:
-      V1   (3, 2) Vertical   3x4 fee=60 weight=6
-      V2   (6, 6) Horizontal 4x5 fee=95 weight=10
-      V5   (1, 11) Vertical   5x5 fee=120 weight=12
-      V6   (7, 12) Horizontal 2x4 fee=45 weight=5
-      V7   (7, 1) Horizontal 3x3 fee=50 weight=5
-      V10  (3, 5) Horizontal 3x5 fee=70 weight=7
-    Di luar kapal: V3, V4, V8, V9
-
-Eksperimen 1 | Populasi 50 | Iterasi 300 | Run 2
-  State awal (value = 250, valid = True, berat = 26)
-    Di dalam kapal:
-      V1   (6, 3) Horizontal 3x4 fee=60 weight=6
-      V3   (8, 7) Horizontal 2x3 fee=35 weight=4
-      V4   (4, 11) Vertical   3x6 fee=85 weight=9
-      V10  (2, 4) Horizontal 3x5 fee=70 weight=7
-    Di luar kapal: V2, V5, V6, V7, V8, V9
-  State akhir (value = 470, valid = True, berat = 49)
-    Di dalam kapal:
-      V1   (4, 4) Vertical   3x4 fee=60 weight=6
-      V3   (6, 8) Horizontal 2x3 fee=35 weight=4
-      V4   (3, 1) Vertical   3x6 fee=85 weight=9
-      V5   (0, 7) Vertical   5x5 fee=120 weight=12
-      V6   (0, 12) Horizontal 2x4 fee=45 weight=5
-      V7   (1, 4) Vertical   3x3 fee=50 weight=5
-      V8   (6, 11) Horizontal 4x4 fee=75 weight=8
-    Di luar kapal: V2, V9, V10
-
-Eksperimen 1 | Populasi 50 | Iterasi 300 | Run 3
-  State awal (value = 290, valid = True, berat = 31)
-    Di dalam kapal:
-      V3   (1, 2) Horizontal 2x3 fee=35 weight=4
-      V4   (0, 9) Horizontal 3x6 fee=85 weight=9
-      V6   (8, 9) Horizontal 2x4 fee=45 weight=5
-      V7   (7, 1) Horizontal 3x3 fee=50 weight=5
-      V8   (3, 2) Vertical   4x4 fee=75 weight=8
-    Di luar kapal: V1, V2, V5, V9, V10
-  State akhir (value = 445, valid = True, berat = 47)
-    Di dalam kapal:
-      V1   (0, 5) Horizontal 3x4 fee=60 weight=6
-      V2   (3, 7) Vertical   4x5 fee=95 weight=10
-      V3   (1, 2) Horizontal 2x3 fee=35 weight=4
-      V4   (0, 9) Horizontal 3x6 fee=85 weight=9
-      V6   (8, 9) Horizontal 2x4 fee=45 weight=5
-      V7   (7, 1) Horizontal 3x3 fee=50 weight=5
-      V8   (3, 2) Vertical   4x4 fee=75 weight=8
-    Di luar kapal: V5, V9, V10
-
-Eksperimen 2 | Populasi 20 | Iterasi 150 | Run 1
-  State awal (value = -670, valid = False, berat = 34)
-    Di dalam kapal:
-      V1   (0, 6) Vertical   3x4 fee=60 weight=6
-      V2   (4, 6) Vertical   4x5 fee=95 weight=10
-      V5   (0, 1) Horizontal 5x5 fee=120 weight=12
-      V9   (2, 8) Horizontal 2x5 fee=55 weight=6
-    Di luar kapal: V3, V4, V6, V7, V8, V10
-  State akhir (value = 330, valid = True, berat = 35)
-    Di dalam kapal:
-      V2   (2, 8) Vertical   4x5 fee=95 weight=10
-      V4   (3, 3) Vertical   3x6 fee=85 weight=9
-      V6   (5, 14) Vertical   2x4 fee=45 weight=5
-      V7   (2, 12) Horizontal 3x3 fee=50 weight=5
-      V9   (4, 1) Vertical   2x5 fee=55 weight=6
-    Di luar kapal: V1, V3, V5, V8, V10
-
-Eksperimen 2 | Populasi 20 | Iterasi 150 | Run 2
-  State awal (value = 250, valid = True, berat = 26)
-    Di dalam kapal:
-      V1   (6, 3) Horizontal 3x4 fee=60 weight=6
-      V3   (8, 7) Horizontal 2x3 fee=35 weight=4
-      V4   (4, 11) Vertical   3x6 fee=85 weight=9
-      V10  (2, 4) Horizontal 3x5 fee=70 weight=7
-    Di luar kapal: V2, V5, V6, V7, V8, V9
-  State akhir (value = 405, valid = True, berat = 42)
-    Di dalam kapal:
-      V1   (6, 3) Horizontal 3x4 fee=60 weight=6
-      V3   (8, 7) Horizontal 2x3 fee=35 weight=4
-      V4   (2, 0) Vertical   3x6 fee=85 weight=9
-      V5   (4, 11) Vertical   5x5 fee=120 weight=12
-      V7   (0, 10) Horizontal 3x3 fee=50 weight=5
-      V9   (1, 4) Horizontal 2x5 fee=55 weight=6
-    Di luar kapal: V2, V6, V8, V10
-
-Eksperimen 2 | Populasi 20 | Iterasi 150 | Run 3
-  State awal (value = 290, valid = True, berat = 31)
-    Di dalam kapal:
-      V3   (1, 2) Horizontal 2x3 fee=35 weight=4
-      V4   (0, 9) Horizontal 3x6 fee=85 weight=9
-      V6   (8, 9) Horizontal 2x4 fee=45 weight=5
-      V7   (7, 1) Horizontal 3x3 fee=50 weight=5
-      V8   (3, 2) Vertical   4x4 fee=75 weight=8
-    Di luar kapal: V1, V2, V5, V9, V10
-  State akhir (value = 420, valid = True, berat = 44)
-    Di dalam kapal:
-      V1   (3, 12) Vertical   3x4 fee=60 weight=6
-      V3   (1, 2) Horizontal 2x3 fee=35 weight=4
-      V4   (0, 9) Horizontal 3x6 fee=85 weight=9
-      V6   (8, 9) Horizontal 2x4 fee=45 weight=5
-      V7   (7, 1) Vertical   3x3 fee=50 weight=5
-      V8   (3, 2) Horizontal 4x4 fee=75 weight=8
-      V10  (3, 8) Vertical   3x5 fee=70 weight=7
-    Di luar kapal: V2, V5, V9
-
-Eksperimen 2 | Populasi 50 | Iterasi 150 | Run 1
-  State awal (value = 295, valid = True, berat = 31)
-    Di dalam kapal:
-      V1   (3, 2) Vertical   3x4 fee=60 weight=6
-      V3   (6, 6) Horizontal 2x3 fee=35 weight=4
-      V4   (1, 11) Vertical   3x6 fee=85 weight=9
-      V6   (7, 12) Horizontal 2x4 fee=45 weight=5
-      V10  (3, 5) Horizontal 3x5 fee=70 weight=7
-    Di luar kapal: V2, V5, V7, V8, V9
-  State akhir (value = 475, valid = True, berat = 49)
-    Di dalam kapal:
-      V1   (3, 2) Vertical   3x4 fee=60 weight=6
-      V2   (6, 6) Horizontal 4x5 fee=95 weight=10
-      V3   (1, 2) Horizontal 2x3 fee=35 weight=4
-      V5   (1, 11) Vertical   5x5 fee=120 weight=12
-      V6   (7, 12) Horizontal 2x4 fee=45 weight=5
-      V7   (0, 5) Horizontal 3x3 fee=50 weight=5
-      V10  (3, 5) Horizontal 3x5 fee=70 weight=7
-    Di luar kapal: V4, V8, V9
-
-Eksperimen 2 | Populasi 50 | Iterasi 150 | Run 2
-  State awal (value = 250, valid = True, berat = 26)
-    Di dalam kapal:
-      V1   (6, 3) Horizontal 3x4 fee=60 weight=6
-      V3   (8, 7) Horizontal 2x3 fee=35 weight=4
-      V4   (4, 11) Vertical   3x6 fee=85 weight=9
-      V10  (2, 4) Horizontal 3x5 fee=70 weight=7
-    Di luar kapal: V2, V5, V6, V7, V8, V9
-  State akhir (value = 470, valid = True, berat = 49)
-    Di dalam kapal:
-      V1   (4, 4) Vertical   3x4 fee=60 weight=6
-      V2   (0, 12) Vertical   4x5 fee=95 weight=10
-      V3   (6, 8) Vertical   2x3 fee=35 weight=4
-      V4   (3, 1) Vertical   3x6 fee=85 weight=9
-      V5   (0, 7) Vertical   5x5 fee=120 weight=12
-      V8   (6, 11) Horizontal 4x4 fee=75 weight=8
-    Di luar kapal: V6, V7, V9, V10
-
-Eksperimen 2 | Populasi 50 | Iterasi 150 | Run 3
-  State awal (value = 290, valid = True, berat = 31)
-    Di dalam kapal:
-      V3   (1, 2) Horizontal 2x3 fee=35 weight=4
-      V4   (0, 9) Horizontal 3x6 fee=85 weight=9
-      V6   (8, 9) Horizontal 2x4 fee=45 weight=5
-      V7   (7, 1) Horizontal 3x3 fee=50 weight=5
-      V8   (3, 2) Vertical   4x4 fee=75 weight=8
-    Di luar kapal: V1, V2, V5, V9, V10
-  State akhir (value = 410, valid = True, berat = 43)
-    Di dalam kapal:
-      V3   (1, 2) Horizontal 2x3 fee=35 weight=4
-      V4   (0, 9) Horizontal 3x6 fee=85 weight=9
-      V5   (3, 7) Vertical   5x5 fee=120 weight=12
-      V6   (8, 9) Horizontal 2x4 fee=45 weight=5
-      V7   (7, 1) Vertical   3x3 fee=50 weight=5
-      V8   (3, 2) Vertical   4x4 fee=75 weight=8
-    Di luar kapal: V1, V2, V9, V10
-
-Eksperimen 2 | Populasi 100 | Iterasi 150 | Run 1
-  State awal (value = 295, valid = True, berat = 31)
-    Di dalam kapal:
-      V1   (3, 2) Vertical   3x4 fee=60 weight=6
-      V3   (6, 6) Horizontal 2x3 fee=35 weight=4
-      V4   (1, 11) Vertical   3x6 fee=85 weight=9
-      V6   (7, 12) Horizontal 2x4 fee=45 weight=5
-      V10  (3, 5) Horizontal 3x5 fee=70 weight=7
-    Di luar kapal: V2, V5, V7, V8, V9
-  State akhir (value = 400, valid = True, berat = 42)
-    Di dalam kapal:
-      V1   (3, 2) Vertical   3x4 fee=60 weight=6
-      V3   (6, 6) Horizontal 2x3 fee=35 weight=4
-      V4   (1, 11) Vertical   3x6 fee=85 weight=9
-      V6   (7, 12) Horizontal 2x4 fee=45 weight=5
-      V7   (0, 1) Horizontal 3x3 fee=50 weight=5
-      V9   (8, 1) Horizontal 2x5 fee=55 weight=6
-      V10  (3, 5) Horizontal 3x5 fee=70 weight=7
-    Di luar kapal: V2, V5, V8
-
-Eksperimen 2 | Populasi 100 | Iterasi 150 | Run 2
-  State awal (value = 365, valid = True, berat = 38)
-    Di dalam kapal:
-      V2   (5, 5) Vertical   4x5 fee=95 weight=10
-      V5   (5, 0) Vertical   5x5 fee=120 weight=12
-      V6   (0, 8) Horizontal 2x4 fee=45 weight=5
-      V7   (2, 10) Horizontal 3x3 fee=50 weight=5
-      V9   (6, 10) Horizontal 2x5 fee=55 weight=6
-    Di luar kapal: V1, V3, V4, V8, V10
-  State akhir (value = 445, valid = True, berat = 46)
-    Di dalam kapal:
-      V2   (5, 5) Vertical   4x5 fee=95 weight=10
-      V4   (3, 1) Vertical   3x6 fee=85 weight=9
-      V5   (0, 7) Vertical   5x5 fee=120 weight=12
-      V8   (6, 11) Horizontal 4x4 fee=75 weight=8
-      V10  (0, 12) Vertical   3x5 fee=70 weight=7
-    Di luar kapal: V1, V3, V6, V7, V9
-
-Eksperimen 2 | Populasi 100 | Iterasi 150 | Run 3
-  State awal (value = 290, valid = True, berat = 31)
-    Di dalam kapal:
-      V3   (1, 2) Horizontal 2x3 fee=35 weight=4
-      V4   (0, 9) Horizontal 3x6 fee=85 weight=9
-      V6   (8, 9) Horizontal 2x4 fee=45 weight=5
-      V7   (7, 1) Horizontal 3x3 fee=50 weight=5
-      V8   (3, 2) Vertical   4x4 fee=75 weight=8
-    Di luar kapal: V1, V2, V5, V9, V10
+      V8   (0, 6) Horizontal 4x4 fee=75 weight=8
+    Di luar kapal: V1, V3, V4, V5, V7, V9, V10
   State akhir (value = 465, valid = True, berat = 49)
     Di dalam kapal:
-      V3   (1, 2) Horizontal 2x3 fee=35 weight=4
-      V4   (0, 9) Horizontal 3x6 fee=85 weight=9
-      V5   (3, 10) Horizontal 5x5 fee=120 weight=12
-      V6   (8, 9) Horizontal 2x4 fee=45 weight=5
-      V7   (7, 1) Horizontal 3x3 fee=50 weight=5
-      V8   (3, 2) Vertical   4x4 fee=75 weight=8
-      V9   (1, 0) Vertical   2x5 fee=55 weight=6
-    Di luar kapal: V1, V2, V10
+      V2   (1, 2) Vertical   4x5 fee=95 weight=10
+      V3   (7, 3) Horizontal 2x3 fee=35 weight=4
+      V4   (7, 6) Horizontal 3x6 fee=85 weight=9
+      V5   (0, 11) Horizontal 5x5 fee=120 weight=12
+      V8   (0, 6) Horizontal 4x4 fee=75 weight=8
+      V9   (5, 10) Horizontal 2x5 fee=55 weight=6
+    Di luar kapal: V1, V6, V7, V10
+
+Eksperimen 1 | Populasi 50 | Iterasi 150 | Run 1
+  State awal (value = 280, valid = True, berat = 29)
+    Di dalam kapal:
+      V3   (2, 10) Horizontal 2x3 fee=35 weight=4
+      V5   (5, 3) Horizontal 5x5 fee=120 weight=12
+      V7   (4, 0) Vertical   3x3 fee=50 weight=5
+      V8   (5, 8) Horizontal 4x4 fee=75 weight=8
+    Di luar kapal: V1, V2, V4, V6, V9, V10
+  State akhir (value = 455, valid = True, berat = 47)
+    Di dalam kapal:
+      V1   (0, 1) Vertical   3x4 fee=60 weight=6
+      V2   (1, 12) Vertical   4x5 fee=95 weight=10
+      V5   (5, 3) Horizontal 5x5 fee=120 weight=12
+      V7   (4, 0) Vertical   3x3 fee=50 weight=5
+      V8   (5, 8) Horizontal 4x4 fee=75 weight=8
+      V9   (1, 6) Horizontal 2x5 fee=55 weight=6
+    Di luar kapal: V3, V4, V6, V10
+
+Eksperimen 1 | Populasi 50 | Iterasi 150 | Run 2
+  State awal (value = 285, valid = True, berat = 29)
+    Di dalam kapal:
+      V1   (0, 4) Horizontal 3x4 fee=60 weight=6
+      V3   (2, 0) Horizontal 2x3 fee=35 weight=4
+      V5   (2, 8) Horizontal 5x5 fee=120 weight=12
+      V10  (6, 1) Horizontal 3x5 fee=70 weight=7
+    Di luar kapal: V2, V4, V6, V7, V8, V9
+  State akhir (value = 390, valid = True, berat = 40)
+    Di dalam kapal:
+      V1   (0, 4) Horizontal 3x4 fee=60 weight=6
+      V3   (2, 0) Vertical   2x3 fee=35 weight=4
+      V5   (2, 8) Vertical   5x5 fee=120 weight=12
+      V7   (3, 13) Vertical   3x3 fee=50 weight=5
+      V9   (8, 11) Horizontal 2x5 fee=55 weight=6
+      V10  (4, 4) Vertical   3x5 fee=70 weight=7
+    Di luar kapal: V2, V4, V6, V8
+
+Eksperimen 1 | Populasi 50 | Iterasi 150 | Run 3
+  State awal (value = 215, valid = True, berat = 23)
+    Di dalam kapal:
+      V2   (1, 2) Vertical   4x5 fee=95 weight=10
+      V6   (7, 8) Horizontal 2x4 fee=45 weight=5
+      V8   (0, 6) Horizontal 4x4 fee=75 weight=8
+    Di luar kapal: V1, V3, V4, V5, V7, V9, V10
+  State akhir (value = 420, valid = True, berat = 44)
+    Di dalam kapal:
+      V1   (6, 3) Vertical   3x4 fee=60 weight=6
+      V2   (1, 2) Vertical   4x5 fee=95 weight=10
+      V3   (7, 6) Horizontal 2x3 fee=35 weight=4
+      V4   (5, 10) Horizontal 3x6 fee=85 weight=9
+      V8   (0, 6) Vertical   4x4 fee=75 weight=8
+      V10  (0, 11) Horizontal 3x5 fee=70 weight=7
+    Di luar kapal: V5, V6, V7, V9
+
+Eksperimen 1 | Populasi 50 | Iterasi 300 | Run 1
+  State awal (value = 280, valid = True, berat = 29)
+    Di dalam kapal:
+      V3   (2, 10) Horizontal 2x3 fee=35 weight=4
+      V5   (5, 3) Horizontal 5x5 fee=120 weight=12
+      V7   (4, 0) Vertical   3x3 fee=50 weight=5
+      V8   (5, 8) Horizontal 4x4 fee=75 weight=8
+    Di luar kapal: V1, V2, V4, V6, V9, V10
+  State akhir (value = 470, valid = True, berat = 49)
+    Di dalam kapal:
+      V2   (0, 11) Vertical   4x5 fee=95 weight=10
+      V4   (0, 1) Horizontal 3x6 fee=85 weight=9
+      V5   (5, 3) Vertical   5x5 fee=120 weight=12
+      V6   (6, 12) Horizontal 2x4 fee=45 weight=5
+      V7   (4, 0) Horizontal 3x3 fee=50 weight=5
+      V8   (1, 7) Horizontal 4x4 fee=75 weight=8
+    Di luar kapal: V1, V3, V9, V10
+
+Eksperimen 1 | Populasi 50 | Iterasi 300 | Run 2
+  State awal (value = 285, valid = True, berat = 29)
+    Di dalam kapal:
+      V1   (0, 4) Horizontal 3x4 fee=60 weight=6
+      V3   (2, 0) Horizontal 2x3 fee=35 weight=4
+      V5   (2, 8) Horizontal 5x5 fee=120 weight=12
+      V10  (6, 1) Horizontal 3x5 fee=70 weight=7
+    Di luar kapal: V2, V4, V6, V7, V8, V9
+  State akhir (value = 390, valid = True, berat = 40)
+    Di dalam kapal:
+      V1   (0, 4) Horizontal 3x4 fee=60 weight=6
+      V3   (2, 0) Horizontal 2x3 fee=35 weight=4
+      V5   (3, 8) Horizontal 5x5 fee=120 weight=12
+      V7   (0, 13) Horizontal 3x3 fee=50 weight=5
+      V9   (8, 11) Horizontal 2x5 fee=55 weight=6
+      V10  (6, 1) Horizontal 3x5 fee=70 weight=7
+    Di luar kapal: V2, V4, V6, V8
+
+Eksperimen 1 | Populasi 50 | Iterasi 300 | Run 3
+  State awal (value = 215, valid = True, berat = 23)
+    Di dalam kapal:
+      V2   (1, 2) Vertical   4x5 fee=95 weight=10
+      V6   (7, 8) Horizontal 2x4 fee=45 weight=5
+      V8   (0, 6) Horizontal 4x4 fee=75 weight=8
+    Di luar kapal: V1, V3, V4, V5, V7, V9, V10
+  State akhir (value = 415, valid = True, berat = 44)
+    Di dalam kapal:
+      V1   (0, 0) Vertical   3x4 fee=60 weight=6
+      V2   (4, 4) Vertical   4x5 fee=95 weight=10
+      V3   (0, 12) Horizontal 2x3 fee=35 weight=4
+      V6   (7, 8) Horizontal 2x4 fee=45 weight=5
+      V7   (7, 1) Vertical   3x3 fee=50 weight=5
+      V8   (0, 4) Horizontal 4x4 fee=75 weight=8
+      V9   (5, 10) Horizontal 2x5 fee=55 weight=6
+    Di luar kapal: V4, V5, V10
+
+Eksperimen 2 | Populasi 20 | Iterasi 150 | Run 1
+  State awal (value = 280, valid = True, berat = 29)
+    Di dalam kapal:
+      V3   (2, 10) Horizontal 2x3 fee=35 weight=4
+      V5   (5, 3) Horizontal 5x5 fee=120 weight=12
+      V7   (4, 0) Vertical   3x3 fee=50 weight=5
+      V8   (5, 8) Horizontal 4x4 fee=75 weight=8
+    Di luar kapal: V1, V2, V4, V6, V9, V10
+  State akhir (value = 410, valid = True, berat = 42)
+    Di dalam kapal:
+      V1   (0, 1) Vertical   3x4 fee=60 weight=6
+      V3   (7, 1) Vertical   2x3 fee=35 weight=4
+      V5   (4, 11) Vertical   5x5 fee=120 weight=12
+      V7   (3, 5) Horizontal 3x3 fee=50 weight=5
+      V8   (6, 7) Horizontal 4x4 fee=75 weight=8
+      V10  (1, 8) Horizontal 3x5 fee=70 weight=7
+    Di luar kapal: V2, V4, V6, V9
+
+Eksperimen 2 | Populasi 20 | Iterasi 150 | Run 2
+  State awal (value = 285, valid = True, berat = 29)
+    Di dalam kapal:
+      V1   (0, 4) Horizontal 3x4 fee=60 weight=6
+      V3   (2, 0) Horizontal 2x3 fee=35 weight=4
+      V5   (2, 8) Horizontal 5x5 fee=120 weight=12
+      V10  (6, 1) Horizontal 3x5 fee=70 weight=7
+    Di luar kapal: V2, V4, V6, V7, V8, V9
+  State akhir (value = 470, valid = True, berat = 49)
+    Di dalam kapal:
+      V1   (0, 4) Horizontal 3x4 fee=60 weight=6
+      V3   (2, 0) Horizontal 2x3 fee=35 weight=4
+      V4   (3, 13) Vertical   3x6 fee=85 weight=9
+      V5   (2, 8) Horizontal 5x5 fee=120 weight=12
+      V6   (6, 6) Vertical   2x4 fee=45 weight=5
+      V9   (4, 3) Horizontal 2x5 fee=55 weight=6
+      V10  (6, 1) Horizontal 3x5 fee=70 weight=7
+    Di luar kapal: V2, V7, V8
+
+Eksperimen 2 | Populasi 20 | Iterasi 150 | Run 3
+  State awal (value = 180, valid = True, berat = 19)
+    Di dalam kapal:
+      V2   (2, 4) Horizontal 4x5 fee=95 weight=10
+      V4   (5, 10) Horizontal 3x6 fee=85 weight=9
+    Di luar kapal: V1, V3, V5, V6, V7, V8, V9, V10
+  State akhir (value = 405, valid = True, berat = 43)
+    Di dalam kapal:
+      V2   (2, 4) Horizontal 4x5 fee=95 weight=10
+      V4   (5, 10) Horizontal 3x6 fee=85 weight=9
+      V6   (0, 2) Vertical   2x4 fee=45 weight=5
+      V7   (1, 12) Vertical   3x3 fee=50 weight=5
+      V8   (6, 5) Vertical   4x4 fee=75 weight=8
+      V9   (5, 0) Vertical   2x5 fee=55 weight=6
+    Di luar kapal: V1, V3, V5, V10
+
+Eksperimen 2 | Populasi 50 | Iterasi 150 | Run 1
+  State awal (value = 280, valid = True, berat = 29)
+    Di dalam kapal:
+      V3   (2, 10) Horizontal 2x3 fee=35 weight=4
+      V5   (5, 3) Horizontal 5x5 fee=120 weight=12
+      V7   (4, 0) Vertical   3x3 fee=50 weight=5
+      V8   (5, 8) Horizontal 4x4 fee=75 weight=8
+    Di luar kapal: V1, V2, V4, V6, V9, V10
+  State akhir (value = 435, valid = True, berat = 45)
+    Di dalam kapal:
+      V1   (0, 4) Horizontal 3x4 fee=60 weight=6
+      V2   (1, 12) Vertical   4x5 fee=95 weight=10
+      V3   (7, 0) Horizontal 2x3 fee=35 weight=4
+      V5   (5, 3) Vertical   5x5 fee=120 weight=12
+      V7   (4, 0) Vertical   3x3 fee=50 weight=5
+      V8   (5, 8) Horizontal 4x4 fee=75 weight=8
+    Di luar kapal: V4, V6, V9, V10
+
+Eksperimen 2 | Populasi 50 | Iterasi 150 | Run 2
+  State awal (value = 285, valid = True, berat = 29)
+    Di dalam kapal:
+      V1   (0, 4) Horizontal 3x4 fee=60 weight=6
+      V3   (2, 0) Horizontal 2x3 fee=35 weight=4
+      V5   (2, 8) Horizontal 5x5 fee=120 weight=12
+      V10  (6, 1) Horizontal 3x5 fee=70 weight=7
+    Di luar kapal: V2, V4, V6, V7, V8, V9
+  State akhir (value = 385, valid = True, berat = 40)
+    Di dalam kapal:
+      V1   (1, 5) Vertical   3x4 fee=60 weight=6
+      V4   (7, 8) Horizontal 3x6 fee=85 weight=9
+      V6   (4, 8) Horizontal 2x4 fee=45 weight=5
+      V7   (2, 0) Vertical   3x3 fee=50 weight=5
+      V8   (0, 11) Horizontal 4x4 fee=75 weight=8
+      V10  (6, 1) Horizontal 3x5 fee=70 weight=7
+    Di luar kapal: V2, V3, V5, V9
+
+Eksperimen 2 | Populasi 50 | Iterasi 150 | Run 3
+  State awal (value = 215, valid = True, berat = 23)
+    Di dalam kapal:
+      V2   (1, 2) Vertical   4x5 fee=95 weight=10
+      V6   (7, 8) Horizontal 2x4 fee=45 weight=5
+      V8   (0, 6) Horizontal 4x4 fee=75 weight=8
+    Di luar kapal: V1, V3, V4, V5, V7, V9, V10
+  State akhir (value = 415, valid = True, berat = 44)
+    Di dalam kapal:
+      V1   (1, 10) Vertical   3x4 fee=60 weight=6
+      V2   (1, 2) Vertical   4x5 fee=95 weight=10
+      V4   (6, 2) Horizontal 3x6 fee=85 weight=9
+      V6   (7, 8) Horizontal 2x4 fee=45 weight=5
+      V8   (0, 6) Horizontal 4x4 fee=75 weight=8
+      V9   (5, 10) Horizontal 2x5 fee=55 weight=6
+    Di luar kapal: V3, V5, V7, V10
+
+Eksperimen 2 | Populasi 100 | Iterasi 150 | Run 1
+  State awal (value = 280, valid = True, berat = 29)
+    Di dalam kapal:
+      V3   (2, 10) Horizontal 2x3 fee=35 weight=4
+      V5   (5, 3) Horizontal 5x5 fee=120 weight=12
+      V7   (4, 0) Vertical   3x3 fee=50 weight=5
+      V8   (5, 8) Horizontal 4x4 fee=75 weight=8
+    Di luar kapal: V1, V2, V4, V6, V9, V10
+  State akhir (value = 480, valid = True, berat = 50)
+    Di dalam kapal:
+      V1   (1, 4) Vertical   3x4 fee=60 weight=6
+      V3   (0, 0) Vertical   2x3 fee=35 weight=4
+      V4   (4, 8) Vertical   3x6 fee=85 weight=9
+      V5   (5, 3) Horizontal 5x5 fee=120 weight=12
+      V7   (2, 13) Vertical   3x3 fee=50 weight=5
+      V8   (5, 12) Vertical   4x4 fee=75 weight=8
+      V9   (0, 8) Horizontal 2x5 fee=55 weight=6
+    Di luar kapal: V2, V6, V10
+
+Eksperimen 2 | Populasi 100 | Iterasi 150 | Run 2
+  State awal (value = 330, valid = True, berat = 34)
+    Di dalam kapal:
+      V4   (6, 1) Horizontal 3x6 fee=85 weight=9
+      V5   (1, 6) Horizontal 5x5 fee=120 weight=12
+      V9   (3, 1) Horizontal 2x5 fee=55 weight=6
+      V10  (0, 11) Vertical   3x5 fee=70 weight=7
+    Di luar kapal: V1, V2, V3, V6, V7, V8
+  State akhir (value = 465, valid = True, berat = 48)
+    Di dalam kapal:
+      V1   (0, 4) Vertical   3x4 fee=60 weight=6
+      V3   (2, 0) Horizontal 2x3 fee=35 weight=4
+      V4   (7, 8) Horizontal 3x6 fee=85 weight=9
+      V5   (2, 8) Horizontal 5x5 fee=120 weight=12
+      V6   (3, 13) Vertical   2x4 fee=45 weight=5
+      V7   (0, 13) Horizontal 3x3 fee=50 weight=5
+      V10  (6, 1) Horizontal 3x5 fee=70 weight=7
+    Di luar kapal: V2, V8, V9
+
+Eksperimen 2 | Populasi 100 | Iterasi 150 | Run 3
+  State awal (value = 240, valid = True, berat = 25)
+    Di dalam kapal:
+      V1   (0, 0) Vertical   3x4 fee=60 weight=6
+      V2   (1, 6) Horizontal 4x5 fee=95 weight=10
+      V3   (5, 0) Vertical   2x3 fee=35 weight=4
+      V7   (5, 8) Horizontal 3x3 fee=50 weight=5
+    Di luar kapal: V4, V5, V6, V8, V9, V10
+  State akhir (value = 475, valid = True, berat = 50)
+    Di dalam kapal:
+      V1   (0, 0) Vertical   3x4 fee=60 weight=6
+      V3   (4, 0) Vertical   2x3 fee=35 weight=4
+      V4   (3, 3) Vertical   3x6 fee=85 weight=9
+      V6   (0, 3) Horizontal 2x4 fee=45 weight=5
+      V7   (0, 7) Horizontal 3x3 fee=50 weight=5
+      V8   (4, 7) Vertical   4x4 fee=75 weight=8
+      V9   (0, 14) Vertical   2x5 fee=55 weight=6
+      V10  (5, 11) Horizontal 3x5 fee=70 weight=7
+    Di luar kapal: V2, V5

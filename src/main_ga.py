@@ -1,5 +1,4 @@
-from main import get_default_problem
-from experiment_ga import run_genetic_algorithm_experiment
+from main import get_default_problem, run_genetic_algorithm_experiment
 
 
 def main():
