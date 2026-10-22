@@ -107,13 +107,16 @@ def run_simulated_annealing_experiment(ship, vehicles, output_dir="../output", s
 
 
 def run_hill_climbing_placeholder(ship, vehicles):
-    """Placeholder untuk modul Hill-Climbing yang dikembangkan anggota tim."""
+    """Menjalankan eksperimen Steepest Ascent Hill-Climbing."""
     try:
-        from algo.hill_climbing import run_hill_climbing_experiment
-        run_hill_climbing_experiment(ship, vehicles)
-    except (ImportError, AttributeError):
-        print("\n[INFO] Modul Hill-Climbing (algo/hill_climbing.py) sedang dikembangkan oleh anggota tim.")
-
+        from main_steepest import main as run_steepest_main
+        run_steepest_main()
+    except ImportError:
+        try:
+            from algo.steepest import run_steepest_ascent_experiment
+            run_steepest_ascent_experiment(ship, vehicles)
+        except ImportError:
+            print("\n[INFO] Modul Steepest Ascent tidak ditemukan.")
 
 def run_genetic_algorithm_experiment(ship, vehicles, output_dir="../output", seeds=None):
     """Menjalankan eksperimen Genetic Algorithm sebanyak 3 kali sesuai spesifikasi."""
