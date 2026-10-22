@@ -106,17 +106,48 @@ def run_simulated_annealing_experiment(ship, vehicles, output_dir="../output", s
     print(f"Hasil plot dan file JSON tersimpan di folder output")
 
 
-def run_hill_climbing_placeholder(ship, vehicles):
+def prompt_for_seeds():
+    """Meminta opsi seed kepada pengguna untuk menjamin initial state yang adil dan sama."""
+    print("\nOpsi Seed Initial State:")
+    print("  [1] Benchmark Standar [42, 100, 2026] (Rekomendasi: Initial State sama persis antar algoritma)")
+    print("  [2] Masukkan 3 angka seed sendiri (Custom)")
+    print("  [3] Acak baru (Random sepenuhnya)")
+    try:
+        opt = input("Pilih opsi seed (1/2/3) [Default 1]: ").strip()
+    except EOFError:
+        opt = "1"
+
+    if opt == "2":
+        try:
+            raw = input("Masukkan 3 angka seed dipisahkan spasi (contoh: 10 20 30): ").strip()
+            nums = [int(x) for x in raw.split() if x.lstrip('-').isdigit()]
+            if len(nums) >= 3:
+                return nums[:3]
+            print("[INFO] Input tidak lengkap, menggunakan benchmark standar [42, 100, 2026].")
+            return [42, 100, 2026]
+        except Exception:
+            return [42, 100, 2026]
+    elif opt == "3":
+        return None  # akan diacak otomatis
+    else:
+        return [42, 100, 2026]
+
+
+def run_hill_climbing_placeholder(ship, vehicles, seeds=None):
     """Menjalankan eksperimen Steepest Ascent Hill-Climbing."""
     try:
+        from main_steepest import main as run_steepest_main
+        run_steepest_main(seeds=seeds)
+    except TypeError:
         from main_steepest import main as run_steepest_main
         run_steepest_main()
     except ImportError:
         try:
             from algo.steepest import run_steepest_ascent_experiment
-            run_steepest_ascent_experiment(ship, vehicles)
-        except ImportError:
+            run_steepest_ascent_experiment(ship, vehicles, seeds=seeds)
+        except (ImportError, TypeError):
             print("\n[INFO] Modul Steepest Ascent tidak ditemukan.")
+
 
 def run_genetic_algorithm_experiment(ship, vehicles, output_dir="../output", seeds=None):
     """Menjalankan eksperimen Genetic Algorithm sebanyak 3 kali sesuai spesifikasi."""
@@ -205,6 +236,14 @@ def main():
     # Jika ada argumen CLI (misal: python main.py 2)
     if len(sys.argv) > 1:
         choice = sys.argv[1].strip()
+        # Jika argumen kedua ada seed (misal python main.py 2 42,100,2026)
+        if len(sys.argv) > 2:
+            try:
+                seeds = [int(x) for x in sys.argv[2].split(",") if x.strip().isdigit()]
+            except Exception:
+                seeds = [42, 100, 2026]
+        else:
+            seeds = [42, 100, 2026]
     else:
         print("\n" + "=" * 52)
         print("   TUGAS BESAR 1 IF3070 DASAR AI - LOCAL SEARCH (G42)  ")
@@ -220,12 +259,17 @@ def main():
         except EOFError:
             choice = "2"
 
+        if choice in ["1", "hc", "hill-climbing", "2", "sa", "simulated-annealing", "3", "ga", "genetic-algorithm"]:
+            seeds = prompt_for_seeds()
+        else:
+            seeds = None
+
     if choice in ["1", "hc", "hill-climbing"]:
-        run_hill_climbing_placeholder(ship, vehicles)
+        run_hill_climbing_placeholder(ship, vehicles, seeds=seeds)
     elif choice in ["2", "sa", "simulated-annealing"]:
-        run_simulated_annealing_experiment(ship, vehicles)
+        run_simulated_annealing_experiment(ship, vehicles, seeds=seeds)
     elif choice in ["3", "ga", "genetic-algorithm"]:
-        run_genetic_algorithm_experiment(ship, vehicles)
+        run_genetic_algorithm_experiment(ship, vehicles, seeds=seeds)
     elif choice in ["4", "exit", "q"]:
         print("Program selesai. Sampai jumpa!")
     else:
