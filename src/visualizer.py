@@ -9,6 +9,9 @@ def save_sa_plots(result, run_number, filename):
     # Grafik 1: Objective Function terhadap iterasi
     ax1.plot(iterations, result["obj_history"], label="Current Value", color="blue", alpha=0.6)
     ax1.plot(iterations, result["best_obj_history"], label="Best Value", color="orange", linestyle="--")
+    # tandai iterasi saat stuck terdeteksi
+    for k, it in enumerate(result.get("stuck_iterations", [])):
+        ax1.axvline(it, color="gray", linestyle=":", alpha=0.8, label="Stuck terdeteksi" if k == 0 else None)
     ax1.set_title(f"Simulated Annealing Run {run_number} - Objective Value vs Iterations")
     ax1.set_xlabel("Iteration")
     ax1.set_ylabel("Objective Value")
@@ -41,7 +44,6 @@ def save_state_visualization(initial_state, final_state, run_number, filename):
         ax.set_xlim(0, ship.width)
         ax.set_ylim(0, ship.length)
         ax.set_aspect("equal")
-        ax.invert_yaxis()
 
         ax.set_xticks(range(ship.width + 1))
         ax.set_yticks(range(ship.length + 1))
