@@ -5,14 +5,19 @@ def save_sa_plots(result, run_number, filename):
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
     iterations = list(range(len(result["obj_history"])))
 
+    # Grafik 1: Objective Function terhadap iterasi
     ax1.plot(iterations, result["obj_history"], label="Current Value", color="blue", alpha=0.6)
     ax1.plot(iterations, result["best_obj_history"], label="Best Value", color="orange", linestyle="--")
+    # tandai iterasi saat stuck terdeteksi
+    for k, it in enumerate(result.get("stuck_iterations", [])):
+        ax1.axvline(it, color="gray", linestyle=":", alpha=0.8, label="Stuck terdeteksi" if k == 0 else None)
     ax1.set_title(f"Simulated Annealing Run {run_number} - Objective Value vs Iterations")
     ax1.set_xlabel("Iteration")
     ax1.set_ylabel("Objective Value")
     ax1.legend()
     ax1.grid(True)
 
+    # Grafik 2: e^(delta_E / T) terhadap iterasi (hanya untuk tetangga yang lebih buruk delta_E <= 0 sesuai materi kuliah)
     if result["prob_iterations"]:
         ax2.scatter(result["prob_iterations"], result["prob_history"], s=6, color="red", alpha=0.5, label=r"$e^{\Delta E / T}$ ($\Delta E \leq 0$)")
     ax2.set_title(f"Simulated Annealing Run {run_number} - Plot $e^{{\\Delta E / T}}$ vs Iterations")
@@ -26,20 +31,6 @@ def save_sa_plots(result, run_number, filename):
     plt.savefig(filename)
     plt.close()
 
-def save_steepest_plots(result, run_number, filename):
-    plt.figure(figsize=(10, 5))
-    iterations = list(range(len(result["obj_history"])))
-    
-    plt.plot(iterations, result["obj_history"], label="Objective Value", color="green", linewidth=2)
-    plt.title(f"Steepest Ascent Run {run_number} - Objective Value vs Iterations")
-    plt.xlabel("Iteration")
-    plt.ylabel("Objective Value")
-    plt.legend()
-    plt.grid(True)
-    
-    plt.tight_layout()
-    plt.savefig(filename)
-    plt.close()
 
 def save_state_visualization(initial_state, final_state, run_number, filename):
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))

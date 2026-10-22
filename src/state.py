@@ -6,6 +6,7 @@ class ShipState:
         self.ship = ship
         self.vehicles = vehicles
 
+        # Kalau placements belum ada, langsung buat random (initial state)
         if placements is None:
             self.placements = self.generate_random_placements()
         else:
@@ -56,6 +57,7 @@ class ShipState:
         overlap_count = 0
         out_of_bounds_count = 0
 
+        # Buat grid 2D ukuran kapal, isi awal 0 semua
         grid = []
         for r in range(self.ship.length):
             row = [0] * self.ship.width
@@ -77,17 +79,21 @@ class ShipState:
                     gx = p["x"] + dx
                     gy = p["y"] + dy
 
+                    # Cek apakah keluar batas geladak kapal
                     if gx < 0 or gx >= self.ship.width or gy < 0 or gy >= self.ship.length:
                         out_of_bounds_count += 1
                     else:
+                        # Cek apakah cell grid overlapping
                         if grid[gy][gx] >= 1:
                             overlap_count += 1
                         grid[gy][gx] += 1
 
+        # Cek apakah melebihi kapasitas berat kapal
         excess_weight = 0
         if total_weight > self.ship.max_capacity:
             excess_weight = total_weight - self.ship.max_capacity
 
+        # Kurangi total fee dengan penalti jika melanggar constraint
         penalty = (overlap_count * 500) + (out_of_bounds_count * 500) + (excess_weight * 200)
         return total_fee - penalty
 
@@ -125,9 +131,11 @@ class ShipState:
         if n == 0:
             return neighbor
 
+        # 3 operasi neighbor sesuai spesifikasi
         move_type = random.choice(["swap", "move", "rotate"])
 
         if move_type == "swap" and n >= 2:
+            # Menukar 2 kendaraan (di dalam maupun di luar kapal)
             idx1, idx2 = random.sample(range(n), 2)
             p1 = neighbor.placements[idx1]
             p2 = neighbor.placements[idx2]
@@ -137,22 +145,47 @@ class ShipState:
             p1["y"], p2["y"] = p2["y"], p1["y"]
 
         elif move_type == "rotate":
+            # Mengubah orientasi kendaraan
             idx = random.randint(0, n - 1)
             if neighbor.placements[idx]["orientation"] == "Horizontal":
                 neighbor.placements[idx]["orientation"] = "Vertical"
             else:
                 neighbor.placements[idx]["orientation"] = "Horizontal"
+            
+            # Geser x dan y jika setelah dirotasi koordinatnya keluar batas kapal
+            w, l = neighbor.get_vehicle_size(idx)
+            max_x = max(0, self.ship.width - w)
+            max_y = max(0, self.ship.length - l)
+            neighbor.placements[idx]["x"] = min(neighbor.placements[idx]["x"], max_x)
+            neighbor.placements[idx]["y"] = min(neighbor.placements[idx]["y"], max_y)
 
         else:
+            # Memindahkan sebuah kendaraan ke suatu koordinat yang berbeda
             idx = random.randint(0, n - 1)
             w, l = neighbor.get_vehicle_size(idx)
 
             max_x = max(0, self.ship.width - w)
             max_y = max(0, self.ship.length - l)
 
-            neighbor.placements[idx]["x"] = random.randint(0, max_x)
-            neighbor.placements[idx]["y"] = random.randint(0, max_y)
+            old_x = neighbor.placements[idx]["x"]
+            old_y = neighbor.placements[idx]["y"]
 
+            # Pastikan koordinat baru berbeda dari koordinat sebelumnya
+            if max_x > 0 or max_y > 0:
+                new_x = random.randint(0, max_x)
+                new_y = random.randint(0, max_y)
+                attempts = 0
+                while (new_x == old_x and new_y == old_y) and attempts < 20:
+                    new_x = random.randint(0, max_x)
+                    new_y = random.randint(0, max_y)
+                    attempts += 1
+                neighbor.placements[idx]["x"] = new_x
+                neighbor.placements[idx]["y"] = new_y
+            else:
+                neighbor.placements[idx]["x"] = 0
+                neighbor.placements[idx]["y"] = 0
+
+            # Peluang 25% untuk mengubah status di dalam / di luar kapal
             if random.random() < 0.25:
                 neighbor.placements[idx]["is_loaded"] = not neighbor.placements[idx]["is_loaded"]
             else:

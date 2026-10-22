@@ -4,9 +4,12 @@ import json
 import random
 from entities import load_problem_from_dict
 from state import ShipState
-from visualizer import save_sa_plots, save_state_visualization, save_steepest_plots
+from algo.sim_annealing import run_simulated_annealing
+from visualizer import save_sa_plots, save_state_visualization
+
 
 def get_default_problem():
+    """Mengembalikan objek ship dan vehicles sesuai spesifikasi kasus uji."""
     problem_data = {
         "ship": {
             "width": 10,
@@ -28,17 +31,15 @@ def get_default_problem():
     }
     return load_problem_from_dict(problem_data)
 
-def run_simulated_annealing_experiment(ship, vehicles, output_dir="../output"):
-    try:
-        from algo.sim_annealing import run_simulated_annealing
-    except ImportError:
-        print("\n[INFO] Modul Simulated Annealing tidak ada di branch ini. Abaikan saja.")
-        return
 
+def run_simulated_annealing_experiment(ship, vehicles, output_dir="../output", seeds=None):
+    """Menjalankan eksperimen Simulated Annealing sebanyak 3 kali sesuai spesifikasi.
+    """
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
-    seeds = [42, 100, 2026]
+    if seeds is None:
+        seeds = [random.SystemRandom().randint(0, 10**6) for _ in range(3)]
     all_results = []
 
     print("\n" + "=" * 50)
@@ -47,7 +48,11 @@ def run_simulated_annealing_experiment(ship, vehicles, output_dir="../output"):
 
     for i in range(3):
         run_num = i + 1
+        random.seed(seeds[i])
         initial_state = ShipState(ship, vehicles)
+
+        # Reset seed agar proses transisi stokastik SA berjalan wajar
+        random.seed()
 
         result = run_simulated_annealing(
             initial_state=initial_state,
@@ -55,19 +60,24 @@ def run_simulated_annealing_experiment(ship, vehicles, output_dir="../output"):
             cooling_rate=0.995,
             min_temp=0.01,
             max_iterations=2000,
-            stuck_limit=30
+            stuck_limit=50
         )
 
-        final_state = result["best_state"]
+        final_state = result["final_state"]
+        best_state = result["best_state"]
 
         print(f"\n--- Run {run_num} ---")
+        print(f"Seed Initial    : {seeds[i]}")
         print(f"Initial Value   : {result['initial_value']}")
-        print(f"Final Value     : {result['best_value']}")
+        print(f"Final Value     : {result['final_value']}")
+        if result['best_value'] != result['final_value']:
+            print(f"Best Value      : {result['best_value']} (elitism)")
         print(f"Valid State?    : {final_state.is_valid()}")
         print(f"Total Iterasi   : {result['iterations']}")
         print(f"Frekuensi Stuck : {result['stuck_frequency']} kali")
         print(f"Durasi          : {round(result['duration'], 4)} detik")
 
+        # Simpan grafik visualisasi
         metrics_path = os.path.join(output_dir, f"sa_metrics_run_{run_num}.png")
         states_path = os.path.join(output_dir, f"sa_states_run_{run_num}.png")
 
@@ -76,85 +86,52 @@ def run_simulated_annealing_experiment(ship, vehicles, output_dir="../output"):
 
         all_results.append({
             "run": run_num,
+            "seed": seeds[i],
             "duration_seconds": result["duration"],
             "iterations": result["iterations"],
             "stuck_frequency": result["stuck_frequency"],
+            "stuck_iterations": result["stuck_iterations"],
             "initial_state": initial_state.to_dict(),
-            "final_state": final_state.to_dict()
+            "final_state": final_state.to_dict(),
+            "best_state": best_state.to_dict()
         })
 
+    # Simpan ringkasan hasil ke JSON
     json_path = os.path.join(output_dir, "sa_results.json")
     with open(json_path, "w") as f:
         json.dump(all_results, f, indent=4)
 
     print("\nEksperimen Simulated Annealing selesai.")
+    print(f"Hasil plot dan file JSON tersimpan di folder output")
 
-def run_hill_climbing_experiment(ship, vehicles, output_dir="../output"):
+
+def run_hill_climbing_placeholder(ship, vehicles):
+    """Memanggil eksperimen Steepest Ascent Hill-Climbing."""
     try:
-        from algo.steepest import run_steepest_ascent
+        from algo.steepest import run_steepest_ascent_experiment
+        run_steepest_ascent_experiment(ship, vehicles)
     except ImportError:
-        print("\n[ERROR] Modul steepest.py tidak ditemukan.")
-        return
+        # Jika file ada di root folder main_steepest.py
+        try:
+            from main_steepest import run_steepest_ascent_experiment
+            run_steepest_ascent_experiment(ship, vehicles)
+        except ImportError:
+            print("\n[INFO] Modul Steepest Ascent (algo/steepest.py) tidak ditemukan.")
 
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-
-    seeds = [42, 100, 2026]
-    all_results = []
-
-    print("\n" + "=" * 50)
-    print("      EKSPERIMEN STEEPEST ASCENT (3 RUNS)         ")
-    print("=" * 50)
-
-    for i in range(3):
-        run_num = i + 1
-        initial_state = ShipState(ship, vehicles)
-
-        result = run_steepest_ascent(
-            initial_state=initial_state,
-            max_iterations=1000,
-            num_neighbors=50
-        )
-
-        final_state = result["best_state"]
-
-        print(f"\n--- Run {run_num} ---")
-        print(f"Initial Value   : {result['initial_value']}")
-        print(f"Final Value     : {result['best_value']}")
-        print(f"Valid State?    : {final_state.is_valid()}")
-        print(f"Total Iterasi   : {result['iterations']}")
-        print(f"Durasi          : {round(result['duration'], 4)} detik")
-
-        metrics_path = os.path.join(output_dir, f"steepest_metrics_run_{run_num}.png")
-        states_path = os.path.join(output_dir, f"steepest_states_run_{run_num}.png")
-
-        save_steepest_plots(result, run_num, metrics_path)
-        save_state_visualization(initial_state, final_state, run_num, states_path)
-
-        all_results.append({
-            "run": run_num,
-            "duration_seconds": result["duration"],
-            "iterations": result["iterations"],
-            "initial_state": initial_state.to_dict(),
-            "final_state": final_state.to_dict()
-        })
-
-    json_path = os.path.join(output_dir, "steepest_results.json")
-    with open(json_path, "w") as f:
-        json.dump(all_results, f, indent=4)
-
-    print("\nEksperimen Steepest Ascent selesai.")
 
 def run_genetic_algorithm_placeholder(ship, vehicles):
+    """Placeholder untuk modul Genetic Algorithm yang dikembangkan anggota tim."""
     try:
         from algo.genetic_algorithm import run_genetic_algorithm_experiment
         run_genetic_algorithm_experiment(ship, vehicles)
     except (ImportError, AttributeError):
         print("\n[INFO] Modul Genetic Algorithm (algo/genetic_algorithm.py) sedang dikembangkan oleh anggota tim.")
 
+
 def main():
     ship, vehicles = get_default_problem()
 
+    # Jika ada argumen CLI (misal: python main.py 2)
     if len(sys.argv) > 1:
         choice = sys.argv[1].strip()
     else:
@@ -162,7 +139,7 @@ def main():
         print("   TUGAS BESAR 1 IF3070 DASAR AI - LOCAL SEARCH (G42)  ")
         print("=" * 52)
         print("Pilih algoritma yang ingin dijalankan:")
-        print("  [1] Hill-Climbing / Steepest Ascent")
+        print("  [1] Hill-Climbing")
         print("  [2] Simulated Annealing")
         print("  [3] Genetic Algorithm")
         print("  [4] Keluar")
@@ -172,8 +149,8 @@ def main():
         except EOFError:
             choice = "2"
 
-    if choice in ["1", "hc", "hill-climbing", "steepest"]:
-        run_hill_climbing_experiment(ship, vehicles)
+    if choice in ["1", "hc", "hill-climbing"]:
+        run_hill_climbing_placeholder(ship, vehicles)
     elif choice in ["2", "sa", "simulated-annealing"]:
         run_simulated_annealing_experiment(ship, vehicles)
     elif choice in ["3", "ga", "genetic-algorithm"]:
@@ -182,6 +159,7 @@ def main():
         print("Program selesai. Sampai jumpa!")
     else:
         print(f"Pilihan '{choice}' tidak valid. Silakan jalankan program kembali.")
+
 
 if __name__ == "__main__":
     main()
