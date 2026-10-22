@@ -1,6 +1,6 @@
 # Tugas Besar 1 IF3070 Dasar Inteligensi Artifisial (Semester II 2025/2026)
 
-## Optimasi Penempatan Kendaraan pada Geladak Kapal Kargo (PT Owen Intim Line) — Kelompok 42 (G42)
+## Optimasi Penempatan Kendaraan Kapal Kargo PT Owen Intim Line — Kelompok 42 (G42)
 
 ---
 
@@ -22,7 +22,7 @@ Geladak kapal serta tiap kendaraan direpresentasikan sebagai grid 2 dimensi berk
 
 Algoritma yang diimplementasikan:
 
-- **Hill-Climbing (Steepest Ascent)**
+- **Steepest Ascent Hill Climbing**
 - **Simulated Annealing**
 - **Genetic Algorithm**
 
@@ -34,19 +34,17 @@ Algoritma yang diimplementasikan:
 IF3070_G42_gkub/
 ├── docs/                      # Dokumen laporan Tugas Besar
 ├── output/                    # Hasil eksekusi algoritma
-│   ├── ga/                    # Plot metrik, visualisasi state, log JSON & ringkasan teks GA
-│   ├── sa_metrics_run_*.png   # Grafik metrik Simulated Annealing
-│   ├── sa_states_run_*.png    # Visualisasi state geladak kapal SA
-│   └── sa_results.json        # Log hasil eksperimen SA
 ├── src/                       # Seluruh source code Python
 │   ├── algo/
 │   │   ├── genetic_algorithm.py   # Implementasi Genetic Algorithm
+│   │   ├── steepest.py            # Implementasi Steepest Ascent Hill Climbing
 │   │   └── sim_annealing.py       # Implementasi Simulated Annealing
 │   ├── data_generator.py          # Generator data uji dummy (kapal & kendaraan)
 │   ├── entities.py                # Definisi entitas Vehicle, Ship, dan loader dataset
 │   ├── main.py                    # Program utama dan runner seluruh eksperimen
 │   ├── main_ga.py                 # Runner langsung untuk Genetic Algorithm
 │   ├── main_sa.py                 # Runner langsung untuk Simulated Annealing
+│   ├── main_steepest.py           # Runner langsung untuk Steepest Ascent Hill Climbing
 │   ├── state.py                   # Representasi ShipState bersama
 │   └── visualizer.py              # Visualisasi grid kapal dan grafik metrik
 ├── .gitignore
@@ -114,10 +112,10 @@ Hasil pengujian berupa gambar visualisasi grid geladak kapal, grafik konvergensi
 
 ---
 
-### Pembagian Tugas Kelompok (G42)
+### Pembagian Tugas Kelompok 42
 
-|   NIM    |          Nama          | Pembagian Tugas                                                           |
-| :------: | :--------------------: | :------------------------------------------------------------------------ |
-| 13522026 | Nicholas Patrick Halim | Implementasi Simulated Annealing, eksperimen SA, visualisasi SA & laporan |
-|    -     |           -            | Implementasi Hill-Climbing (Steepest Ascent), eksperimen HC & laporan     |
-|    -     |           -            | Implementasi Genetic Algorithm, eksperimen GA, visualisasi GA & laporan   |
+|   NIM    |          Nama              | Pembagian Tugas                                                           |
+| :------: | :-------------------------:| :------------------------------------------------------------------------ |
+| 18224098 | Nicholas Putra Halim       | Implementasi Simulated Annealing, eksperimen SA, visualisasi SA & laporan |
+| 18224038 | Christian Wilfredo Pakpahan| Implementasi Steepest Ascent Hill Climbing, eksperimen HC & laporan       |
+| 18224118 | Brandon Zeko Alexander     | Implementasi Genetic Algorithm, eksperimen GA, visualisasi GA & laporan   |
