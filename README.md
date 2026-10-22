@@ -117,5 +117,5 @@ Hasil pengujian berupa gambar visualisasi grid geladak kapal, grafik konvergensi
 |   NIM    |          Nama              | Pembagian Tugas                                                           |
 | :------: | :-------------------------:| :------------------------------------------------------------------------ |
 | 18224098 | Nicholas Putra Halim       | Implementasi Simulated Annealing, eksperimen SA, visualisasi SA & laporan |
-| 18224038 | Christian Wilfredo Pakpahan| Implementasi Steepest Ascent Hill Climbing, eksperimen HC & laporan       |
-| 18224118 | Brandon Zeko Alexander     | Implementasi Genetic Algorithm, eksperimen GA, visualisasi GA & laporan   |
+| 18224038 | Brandon Zeko Alexander     | Implementasi Steepest Ascent Hill Climbing, eksperimen HC & laporan       |
+| 18224118 | Christian Wilfredo Pakpahan| Implementasi Genetic Algorithm, eksperimen GA, visualisasi GA & laporan   |
